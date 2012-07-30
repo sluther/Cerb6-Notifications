@@ -1,0 +1,609 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1B01C2EE15D259220082D68C /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B01C2EB15D259220082D68C /* Preferences.xib */; };
+		1B01C2EF15D259220082D68C /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B01C2EB15D259220082D68C /* Preferences.xib */; };
+		1B01C2F015D259220082D68C /* PreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B01C2ED15D259220082D68C /* PreferencesWindowController.m */; };
+		1B01C2F115D259220082D68C /* PreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B01C2ED15D259220082D68C /* PreferencesWindowController.m */; };
+		1B78D44915D0A4FC00E3B71A /* Notification.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B78D44815D0A4FC00E3B71A /* Notification.m */; };
+		1B78D44D15D1081A00E3B71A /* NotificationsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B78D44C15D1081A00E3B71A /* NotificationsView.m */; };
+		1B98AAD015CB6322004BE94F /* CDataScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B98AABB15CB6322004BE94F /* CDataScanner.m */; };
+		1B98AAD115CB6322004BE94F /* CDataScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B98AABB15CB6322004BE94F /* CDataScanner.m */; };
+		1B98AAD215CB6322004BE94F /* CFilteringJSONSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B98AABE15CB6322004BE94F /* CFilteringJSONSerializer.m */; };
+		1B98AAD315CB6322004BE94F /* CFilteringJSONSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B98AABE15CB6322004BE94F /* CFilteringJSONSerializer.m */; };
+		1B98AAD415CB6322004BE94F /* CJSONSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B98AAC015CB6322004BE94F /* CJSONSerialization.m */; };
+		1B98AAD515CB6322004BE94F /* CJSONSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B98AAC015CB6322004BE94F /* CJSONSerialization.m */; };
+		1B98AAD615CB6322004BE94F /* CJSONSerializedData.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B98AAC215CB6322004BE94F /* CJSONSerializedData.m */; };
+		1B98AAD715CB6322004BE94F /* CJSONSerializedData.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B98AAC215CB6322004BE94F /* CJSONSerializedData.m */; };
+		1B98AAD815CB6322004BE94F /* CDataScanner_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B98AAC515CB6322004BE94F /* CDataScanner_Extensions.m */; };
+		1B98AAD915CB6322004BE94F /* CDataScanner_Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B98AAC515CB6322004BE94F /* CDataScanner_Extensions.m */; };
+		1B98AADA15CB6322004BE94F /* NSDictionary_JSONExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B98AAC715CB6322004BE94F /* NSDictionary_JSONExtensions.m */; };
+		1B98AADB15CB6322004BE94F /* NSDictionary_JSONExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B98AAC715CB6322004BE94F /* NSDictionary_JSONExtensions.m */; };
+		1B98AADC15CB6322004BE94F /* CJSONDeserializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B98AACA15CB6322004BE94F /* CJSONDeserializer.m */; };
+		1B98AADD15CB6322004BE94F /* CJSONDeserializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B98AACA15CB6322004BE94F /* CJSONDeserializer.m */; };
+		1B98AADE15CB6322004BE94F /* CJSONScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B98AACC15CB6322004BE94F /* CJSONScanner.m */; };
+		1B98AADF15CB6322004BE94F /* CJSONScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B98AACC15CB6322004BE94F /* CJSONScanner.m */; };
+		1B98AAE015CB6322004BE94F /* CJSONSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B98AACE15CB6322004BE94F /* CJSONSerializer.m */; };
+		1B98AAE115CB6322004BE94F /* CJSONSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B98AACE15CB6322004BE94F /* CJSONSerializer.m */; };
+		1B9C40A915C922A900EF234A /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B9C40A615C922A900EF234A /* Utils.m */; };
+		1B9C40AA15C922A900EF234A /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B9C40A615C922A900EF234A /* Utils.m */; };
+		1BA553BD15CCF8D5002D0A39 /* Cerb6_Notifications.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1BA553BB15CCF8D5002D0A39 /* Cerb6_Notifications.xcdatamodeld */; };
+		1BDE6B8A15C678E800A3E311 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BDE6B8915C678E800A3E311 /* Cocoa.framework */; };
+		1BDE6B9415C678E800A3E311 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1BDE6B9215C678E800A3E311 /* InfoPlist.strings */; };
+		1BDE6B9615C678E800A3E311 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDE6B9515C678E800A3E311 /* main.m */; };
+		1BDE6B9A15C678E800A3E311 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 1BDE6B9815C678E800A3E311 /* Credits.rtf */; };
+		1BDE6B9D15C678E800A3E311 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDE6B9C15C678E800A3E311 /* AppDelegate.m */; };
+		1BDE6BA015C678E800A3E311 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1BDE6B9E15C678E800A3E311 /* MainMenu.xib */; };
+		1BDE6BA815C678E800A3E311 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BDE6BA715C678E800A3E311 /* SenTestingKit.framework */; };
+		1BDE6BA915C678E800A3E311 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BDE6B8915C678E800A3E311 /* Cocoa.framework */; };
+		1BDE6BB115C678E800A3E311 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1BDE6BAF15C678E800A3E311 /* InfoPlist.strings */; };
+		1BDE6BB415C678E800A3E311 /* Cerb6_NotificationsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDE6BB315C678E800A3E311 /* Cerb6_NotificationsTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		1BDE6BAA15C678E800A3E311 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1BDE6B7C15C678E800A3E311 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1BDE6B8415C678E800A3E311;
+			remoteInfo = "Cerb6 Notifications";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		1B01C2EB15D259220082D68C /* Preferences.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Preferences.xib; sourceTree = "<group>"; };
+		1B01C2EC15D259220082D68C /* PreferencesWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferencesWindowController.h; sourceTree = "<group>"; };
+		1B01C2ED15D259220082D68C /* PreferencesWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferencesWindowController.m; sourceTree = "<group>"; };
+		1B78D44715D0A4FC00E3B71A /* Notification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Notification.h; sourceTree = "<group>"; };
+		1B78D44815D0A4FC00E3B71A /* Notification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Notification.m; sourceTree = "<group>"; };
+		1B78D44B15D1081A00E3B71A /* NotificationsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationsView.h; sourceTree = "<group>"; };
+		1B78D44C15D1081A00E3B71A /* NotificationsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationsView.m; sourceTree = "<group>"; };
+		1B98AABA15CB6322004BE94F /* CDataScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDataScanner.h; sourceTree = "<group>"; };
+		1B98AABB15CB6322004BE94F /* CDataScanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDataScanner.m; sourceTree = "<group>"; };
+		1B98AABD15CB6322004BE94F /* CFilteringJSONSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFilteringJSONSerializer.h; sourceTree = "<group>"; };
+		1B98AABE15CB6322004BE94F /* CFilteringJSONSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CFilteringJSONSerializer.m; sourceTree = "<group>"; };
+		1B98AABF15CB6322004BE94F /* CJSONSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJSONSerialization.h; sourceTree = "<group>"; };
+		1B98AAC015CB6322004BE94F /* CJSONSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJSONSerialization.m; sourceTree = "<group>"; };
+		1B98AAC115CB6322004BE94F /* CJSONSerializedData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJSONSerializedData.h; sourceTree = "<group>"; };
+		1B98AAC215CB6322004BE94F /* CJSONSerializedData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJSONSerializedData.m; sourceTree = "<group>"; };
+		1B98AAC415CB6322004BE94F /* CDataScanner_Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDataScanner_Extensions.h; sourceTree = "<group>"; };
+		1B98AAC515CB6322004BE94F /* CDataScanner_Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDataScanner_Extensions.m; sourceTree = "<group>"; };
+		1B98AAC615CB6322004BE94F /* NSDictionary_JSONExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDictionary_JSONExtensions.h; sourceTree = "<group>"; };
+		1B98AAC715CB6322004BE94F /* NSDictionary_JSONExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDictionary_JSONExtensions.m; sourceTree = "<group>"; };
+		1B98AAC915CB6322004BE94F /* CJSONDeserializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJSONDeserializer.h; sourceTree = "<group>"; };
+		1B98AACA15CB6322004BE94F /* CJSONDeserializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJSONDeserializer.m; sourceTree = "<group>"; };
+		1B98AACB15CB6322004BE94F /* CJSONScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJSONScanner.h; sourceTree = "<group>"; };
+		1B98AACC15CB6322004BE94F /* CJSONScanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJSONScanner.m; sourceTree = "<group>"; };
+		1B98AACD15CB6322004BE94F /* CJSONSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJSONSerializer.h; sourceTree = "<group>"; };
+		1B98AACE15CB6322004BE94F /* CJSONSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CJSONSerializer.m; sourceTree = "<group>"; };
+		1B98AACF15CB6322004BE94F /* JSONRepresentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONRepresentation.h; sourceTree = "<group>"; };
+		1B9C40A515C922A900EF234A /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
+		1B9C40A615C922A900EF234A /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
+		1BA553BC15CCF8D5002D0A39 /* Cerb6_Notifications.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Cerb6_Notifications.xcdatamodel; sourceTree = "<group>"; };
+		1BDE6B8515C678E800A3E311 /* Cerb6 Notifications.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Cerb6 Notifications.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1BDE6B8915C678E800A3E311 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		1BDE6B8C15C678E800A3E311 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		1BDE6B8D15C678E800A3E311 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		1BDE6B8E15C678E800A3E311 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		1BDE6B9115C678E800A3E311 /* Cerb6 Notifications-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Cerb6 Notifications-Info.plist"; sourceTree = "<group>"; };
+		1BDE6B9315C678E800A3E311 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		1BDE6B9515C678E800A3E311 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		1BDE6B9715C678E800A3E311 /* Cerb6 Notifications-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Cerb6 Notifications-Prefix.pch"; sourceTree = "<group>"; };
+		1BDE6B9915C678E800A3E311 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		1BDE6B9B15C678E800A3E311 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		1BDE6B9C15C678E800A3E311 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		1BDE6B9F15C678E800A3E311 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		1BDE6BA615C678E800A3E311 /* Cerb6 NotificationsTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Cerb6 NotificationsTests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1BDE6BA715C678E800A3E311 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		1BDE6BAE15C678E800A3E311 /* Cerb6 NotificationsTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Cerb6 NotificationsTests-Info.plist"; sourceTree = "<group>"; };
+		1BDE6BB015C678E800A3E311 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		1BDE6BB215C678E800A3E311 /* Cerb6_NotificationsTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Cerb6_NotificationsTests.h; sourceTree = "<group>"; };
+		1BDE6BB315C678E800A3E311 /* Cerb6_NotificationsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Cerb6_NotificationsTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1BDE6B8215C678E800A3E311 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1BDE6B8A15C678E800A3E311 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1BDE6BA215C678E800A3E311 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1BDE6BA815C678E800A3E311 /* SenTestingKit.framework in Frameworks */,
+				1BDE6BA915C678E800A3E311 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1B98AABC15CB6322004BE94F /* Experimental */ = {
+			isa = PBXGroup;
+			children = (
+				1B98AABD15CB6322004BE94F /* CFilteringJSONSerializer.h */,
+				1B98AABE15CB6322004BE94F /* CFilteringJSONSerializer.m */,
+				1B98AABF15CB6322004BE94F /* CJSONSerialization.h */,
+				1B98AAC015CB6322004BE94F /* CJSONSerialization.m */,
+				1B98AAC115CB6322004BE94F /* CJSONSerializedData.h */,
+				1B98AAC215CB6322004BE94F /* CJSONSerializedData.m */,
+			);
+			path = Experimental;
+			sourceTree = "<group>";
+		};
+		1B98AAC315CB6322004BE94F /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				1B98AAC415CB6322004BE94F /* CDataScanner_Extensions.h */,
+				1B98AAC515CB6322004BE94F /* CDataScanner_Extensions.m */,
+				1B98AAC615CB6322004BE94F /* NSDictionary_JSONExtensions.h */,
+				1B98AAC715CB6322004BE94F /* NSDictionary_JSONExtensions.m */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		1B98AAC815CB6322004BE94F /* JSON */ = {
+			isa = PBXGroup;
+			children = (
+				1B98AAC915CB6322004BE94F /* CJSONDeserializer.h */,
+				1B98AACA15CB6322004BE94F /* CJSONDeserializer.m */,
+				1B98AACB15CB6322004BE94F /* CJSONScanner.h */,
+				1B98AACC15CB6322004BE94F /* CJSONScanner.m */,
+				1B98AACD15CB6322004BE94F /* CJSONSerializer.h */,
+				1B98AACE15CB6322004BE94F /* CJSONSerializer.m */,
+				1B98AACF15CB6322004BE94F /* JSONRepresentation.h */,
+			);
+			path = JSON;
+			sourceTree = "<group>";
+		};
+		1BDE6B7A15C678E800A3E311 = {
+			isa = PBXGroup;
+			children = (
+				1BA553BB15CCF8D5002D0A39 /* Cerb6_Notifications.xcdatamodeld */,
+				1BDE6B8F15C678E800A3E311 /* Cerb6 Notifications */,
+				1BDE6BAC15C678E800A3E311 /* Cerb6 NotificationsTests */,
+				1BDE6B8815C678E800A3E311 /* Frameworks */,
+				1BDE6B8615C678E800A3E311 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		1BDE6B8615C678E800A3E311 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1BDE6B8515C678E800A3E311 /* Cerb6 Notifications.app */,
+				1BDE6BA615C678E800A3E311 /* Cerb6 NotificationsTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1BDE6B8815C678E800A3E311 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1BDE6B8915C678E800A3E311 /* Cocoa.framework */,
+				1BDE6BA715C678E800A3E311 /* SenTestingKit.framework */,
+				1BDE6B8B15C678E800A3E311 /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		1BDE6B8B15C678E800A3E311 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1BDE6B8C15C678E800A3E311 /* AppKit.framework */,
+				1BDE6B8D15C678E800A3E311 /* CoreData.framework */,
+				1BDE6B8E15C678E800A3E311 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		1BDE6B8F15C678E800A3E311 /* Cerb6 Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				1B78D44715D0A4FC00E3B71A /* Notification.h */,
+				1B78D44815D0A4FC00E3B71A /* Notification.m */,
+				1B98AABA15CB6322004BE94F /* CDataScanner.h */,
+				1B98AABB15CB6322004BE94F /* CDataScanner.m */,
+				1B98AABC15CB6322004BE94F /* Experimental */,
+				1B98AAC315CB6322004BE94F /* Extensions */,
+				1B98AAC815CB6322004BE94F /* JSON */,
+				1B9C40A515C922A900EF234A /* Utils.h */,
+				1B9C40A615C922A900EF234A /* Utils.m */,
+				1BDE6B9B15C678E800A3E311 /* AppDelegate.h */,
+				1BDE6B9C15C678E800A3E311 /* AppDelegate.m */,
+				1BDE6B9E15C678E800A3E311 /* MainMenu.xib */,
+				1B78D44B15D1081A00E3B71A /* NotificationsView.h */,
+				1B78D44C15D1081A00E3B71A /* NotificationsView.m */,
+				1B01C2EB15D259220082D68C /* Preferences.xib */,
+				1B01C2EC15D259220082D68C /* PreferencesWindowController.h */,
+				1B01C2ED15D259220082D68C /* PreferencesWindowController.m */,
+				1BDE6B9015C678E800A3E311 /* Supporting Files */,
+			);
+			path = "Cerb6 Notifications";
+			sourceTree = "<group>";
+		};
+		1BDE6B9015C678E800A3E311 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				1BDE6B9115C678E800A3E311 /* Cerb6 Notifications-Info.plist */,
+				1BDE6B9215C678E800A3E311 /* InfoPlist.strings */,
+				1BDE6B9515C678E800A3E311 /* main.m */,
+				1BDE6B9715C678E800A3E311 /* Cerb6 Notifications-Prefix.pch */,
+				1BDE6B9815C678E800A3E311 /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		1BDE6BAC15C678E800A3E311 /* Cerb6 NotificationsTests */ = {
+			isa = PBXGroup;
+			children = (
+				1BDE6BB215C678E800A3E311 /* Cerb6_NotificationsTests.h */,
+				1BDE6BB315C678E800A3E311 /* Cerb6_NotificationsTests.m */,
+				1BDE6BAD15C678E800A3E311 /* Supporting Files */,
+			);
+			path = "Cerb6 NotificationsTests";
+			sourceTree = "<group>";
+		};
+		1BDE6BAD15C678E800A3E311 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				1BDE6BAE15C678E800A3E311 /* Cerb6 NotificationsTests-Info.plist */,
+				1BDE6BAF15C678E800A3E311 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1BDE6B8415C678E800A3E311 /* Cerb6 Notifications */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1BDE6BB715C678E800A3E311 /* Build configuration list for PBXNativeTarget "Cerb6 Notifications" */;
+			buildPhases = (
+				1BDE6B8115C678E800A3E311 /* Sources */,
+				1BDE6B8215C678E800A3E311 /* Frameworks */,
+				1BDE6B8315C678E800A3E311 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Cerb6 Notifications";
+			productName = "Cerb6 Notifications";
+			productReference = 1BDE6B8515C678E800A3E311 /* Cerb6 Notifications.app */;
+			productType = "com.apple.product-type.application";
+		};
+		1BDE6BA515C678E800A3E311 /* Cerb6 NotificationsTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1BDE6BBA15C678E800A3E311 /* Build configuration list for PBXNativeTarget "Cerb6 NotificationsTests" */;
+			buildPhases = (
+				1BDE6BA115C678E800A3E311 /* Sources */,
+				1BDE6BA215C678E800A3E311 /* Frameworks */,
+				1BDE6BA315C678E800A3E311 /* Resources */,
+				1BDE6BA415C678E800A3E311 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1BDE6BAB15C678E800A3E311 /* PBXTargetDependency */,
+			);
+			name = "Cerb6 NotificationsTests";
+			productName = "Cerb6 NotificationsTests";
+			productReference = 1BDE6BA615C678E800A3E311 /* Cerb6 NotificationsTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1BDE6B7C15C678E800A3E311 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0440;
+				ORGANIZATIONNAME = "WebGroup Media";
+			};
+			buildConfigurationList = 1BDE6B7F15C678E800A3E311 /* Build configuration list for PBXProject "Cerb6 Notifications" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 1BDE6B7A15C678E800A3E311;
+			productRefGroup = 1BDE6B8615C678E800A3E311 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1BDE6B8415C678E800A3E311 /* Cerb6 Notifications */,
+				1BDE6BA515C678E800A3E311 /* Cerb6 NotificationsTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1BDE6B8315C678E800A3E311 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1BDE6B9415C678E800A3E311 /* InfoPlist.strings in Resources */,
+				1BDE6B9A15C678E800A3E311 /* Credits.rtf in Resources */,
+				1BDE6BA015C678E800A3E311 /* MainMenu.xib in Resources */,
+				1B01C2EE15D259220082D68C /* Preferences.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1BDE6BA315C678E800A3E311 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1BDE6BB115C678E800A3E311 /* InfoPlist.strings in Resources */,
+				1B01C2EF15D259220082D68C /* Preferences.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1BDE6BA415C678E800A3E311 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1BDE6B8115C678E800A3E311 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1BDE6B9615C678E800A3E311 /* main.m in Sources */,
+				1BDE6B9D15C678E800A3E311 /* AppDelegate.m in Sources */,
+				1B9C40A915C922A900EF234A /* Utils.m in Sources */,
+				1B98AAD015CB6322004BE94F /* CDataScanner.m in Sources */,
+				1B98AAD215CB6322004BE94F /* CFilteringJSONSerializer.m in Sources */,
+				1B98AAD415CB6322004BE94F /* CJSONSerialization.m in Sources */,
+				1B98AAD615CB6322004BE94F /* CJSONSerializedData.m in Sources */,
+				1B98AAD815CB6322004BE94F /* CDataScanner_Extensions.m in Sources */,
+				1B98AADA15CB6322004BE94F /* NSDictionary_JSONExtensions.m in Sources */,
+				1B98AADC15CB6322004BE94F /* CJSONDeserializer.m in Sources */,
+				1B98AADE15CB6322004BE94F /* CJSONScanner.m in Sources */,
+				1B98AAE015CB6322004BE94F /* CJSONSerializer.m in Sources */,
+				1BA553BD15CCF8D5002D0A39 /* Cerb6_Notifications.xcdatamodeld in Sources */,
+				1B78D44915D0A4FC00E3B71A /* Notification.m in Sources */,
+				1B78D44D15D1081A00E3B71A /* NotificationsView.m in Sources */,
+				1B01C2F015D259220082D68C /* PreferencesWindowController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1BDE6BA115C678E800A3E311 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1BDE6BB415C678E800A3E311 /* Cerb6_NotificationsTests.m in Sources */,
+				1B9C40AA15C922A900EF234A /* Utils.m in Sources */,
+				1B98AAD115CB6322004BE94F /* CDataScanner.m in Sources */,
+				1B98AAD315CB6322004BE94F /* CFilteringJSONSerializer.m in Sources */,
+				1B98AAD515CB6322004BE94F /* CJSONSerialization.m in Sources */,
+				1B98AAD715CB6322004BE94F /* CJSONSerializedData.m in Sources */,
+				1B98AAD915CB6322004BE94F /* CDataScanner_Extensions.m in Sources */,
+				1B98AADB15CB6322004BE94F /* NSDictionary_JSONExtensions.m in Sources */,
+				1B98AADD15CB6322004BE94F /* CJSONDeserializer.m in Sources */,
+				1B98AADF15CB6322004BE94F /* CJSONScanner.m in Sources */,
+				1B98AAE115CB6322004BE94F /* CJSONSerializer.m in Sources */,
+				1B01C2F115D259220082D68C /* PreferencesWindowController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		1BDE6BAB15C678E800A3E311 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1BDE6B8415C678E800A3E311 /* Cerb6 Notifications */;
+			targetProxy = 1BDE6BAA15C678E800A3E311 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		1BDE6B9215C678E800A3E311 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1BDE6B9315C678E800A3E311 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		1BDE6B9815C678E800A3E311 /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1BDE6B9915C678E800A3E311 /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		1BDE6B9E15C678E800A3E311 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1BDE6B9F15C678E800A3E311 /* en */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		1BDE6BAF15C678E800A3E311 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1BDE6BB015C678E800A3E311 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		1BDE6BB515C678E800A3E311 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		1BDE6BB615C678E800A3E311 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		1BDE6BB815C678E800A3E311 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Cerb6 Notifications/Cerb6 Notifications-Prefix.pch";
+				INFOPLIST_FILE = "Cerb6 Notifications/Cerb6 Notifications-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		1BDE6BB915C678E800A3E311 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Cerb6 Notifications/Cerb6 Notifications-Prefix.pch";
+				INFOPLIST_FILE = "Cerb6 Notifications/Cerb6 Notifications-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		1BDE6BBB15C678E800A3E311 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Cerb6 Notifications.app/Contents/MacOS/Cerb6 Notifications";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = "\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Cerb6 Notifications/Cerb6 Notifications-Prefix.pch";
+				INFOPLIST_FILE = "Cerb6 NotificationsTests/Cerb6 NotificationsTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		1BDE6BBC15C678E800A3E311 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Cerb6 Notifications.app/Contents/MacOS/Cerb6 Notifications";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = "\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Cerb6 Notifications/Cerb6 Notifications-Prefix.pch";
+				INFOPLIST_FILE = "Cerb6 NotificationsTests/Cerb6 NotificationsTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1BDE6B7F15C678E800A3E311 /* Build configuration list for PBXProject "Cerb6 Notifications" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1BDE6BB515C678E800A3E311 /* Debug */,
+				1BDE6BB615C678E800A3E311 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1BDE6BB715C678E800A3E311 /* Build configuration list for PBXNativeTarget "Cerb6 Notifications" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1BDE6BB815C678E800A3E311 /* Debug */,
+				1BDE6BB915C678E800A3E311 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1BDE6BBA15C678E800A3E311 /* Build configuration list for PBXNativeTarget "Cerb6 NotificationsTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1BDE6BBB15C678E800A3E311 /* Debug */,
+				1BDE6BBC15C678E800A3E311 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		1BA553BB15CCF8D5002D0A39 /* Cerb6_Notifications.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				1BA553BC15CCF8D5002D0A39 /* Cerb6_Notifications.xcdatamodel */,
+			);
+			currentVersion = 1BA553BC15CCF8D5002D0A39 /* Cerb6_Notifications.xcdatamodel */;
+			name = Cerb6_Notifications.xcdatamodeld;
+			path = "Cerb6 Notifications/Cerb6_Notifications.xcdatamodeld";
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 1BDE6B7C15C678E800A3E311 /* Project object */;
+}
