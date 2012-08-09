@@ -20,7 +20,10 @@
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 
 @property NSMutableArray *userNotifications;
+@property NSMutableArray *queuedNotifications;
+
 @property (weak) IBOutlet NSTableView *notificationsTable;
+
 
 - (IBAction) refresh:(id)sender;
 - (IBAction) clearNotifications:(id)sender;

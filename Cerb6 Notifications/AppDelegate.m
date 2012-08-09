@@ -18,6 +18,8 @@
 @synthesize managedObjectContext = _managedObjectContext;
 
 @synthesize userNotifications;
+@synthesize queuedNotifications;
+
 @synthesize notificationsTable;
 
 - (IBAction) clearNotifications:(id)sender
@@ -37,7 +39,7 @@
         [context deleteObject:notification];
     }
 	
-	[notificationsTable reloadData];
+	[self reloadTableFromStore];
 }
 
 - (IBAction) deleteNotification:(id)sender
@@ -87,6 +89,26 @@
 - (IBAction) refresh:(id)sender
 {
 	[self refreshNotifications];
+}
+
+- (void) deliverQueuedNotifications
+{
+	NSInteger count = [queuedNotifications count];
+	if(count != 0) {
+		for(NSInteger i = 0; i < count; i++) {
+			
+			Notification *queuedNotification = [queuedNotifications objectAtIndex:i];
+			
+			NSInteger loc = [userNotifications indexOfObject:queuedNotification];
+			NSLog(@"Location: %lu", loc);
+			
+			NSNumber *location = [NSNumber numberWithInteger:loc];
+			NSDictionary *notificationInfo = [[NSDictionary alloc] initWithObjectsAndKeys:location, @"loc", nil];
+			[self deliverNotificationWithTitle:@"Cerb6 Notification" message:queuedNotification.message notificationInfo:notificationInfo];
+		}
+		
+		[queuedNotifications removeAllObjects];
+	}
 }
 
 - (void) reloadTableFromStore
@@ -179,8 +201,8 @@
 			notification.isRead = isRead;
 			notification.created = created;
 			
-			NSDictionary *notificationInfo = [[NSDictionary alloc] initWithObjectsAndKeys:notificationId, @"notificationId", nil];
-			[self deliverNotificationWithTitle:@"Cerb6 Notification" message:message notificationInfo:notificationInfo];
+			[queuedNotifications addObject:notification];
+			
 //			NSLog(@"%@", notification);
 		} else {
 			// Only one notification per id, so grab the first one in the result set
@@ -194,12 +216,13 @@
 			NSLog(@"%@", error);
 		}
 	}
+	
 	[self reloadTableFromStore];
+	[self deliverQueuedNotifications];
 }
 
-- (NSString *)request:(NSDictionary *)request
+- (NSString *) request:(NSDictionary *)request
 {
-	
 	NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:[request objectForKey:@"url"]];
 	[urlRequest setCachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData];
 	[urlRequest addValue:@"application/x-www-form-urlencoded; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
@@ -253,8 +276,8 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)notification
 {
-	
 	userNotifications = [[NSMutableArray alloc] init];
+	queuedNotifications = [[NSMutableArray alloc] init];
 	
 	NSTimeInterval seconds = 300;
 	NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:seconds target:self selector:@selector(refreshNotifications) userInfo:nil repeats:YES];
@@ -278,7 +301,8 @@
 
 - (void) userNotificationCenter:(NSUserNotificationCenter *)center didActivateNotification:(NSUserNotification *)clickedNotification
 {
-	NSLog(@"%@", clickedNotification.userInfo);
+	NSIndexSet *indexSet = [NSIndexSet indexSetWithIndex:[[clickedNotification.userInfo objectForKey:@"loc"] integerValue]];
+	[notificationsTable selectRowIndexes:indexSet byExtendingSelection:NO];
 }
 
 - (BOOL)userNotificationCenter:(NSUserNotificationCenter *)center
@@ -305,7 +329,6 @@
 	NSTableCellView *cellView = [tableView makeViewWithIdentifier:identifier owner:self];
 	
 	Notification *notification = [userNotifications objectAtIndex:row];
-	
 	if([notification.isRead intValue] == 0) {
 		[[cellView textField] setFont:[NSFont boldSystemFontOfSize:12]];
 	} else {
