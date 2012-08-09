@@ -10,11 +10,6 @@
 
 @implementation PreferencesWindowController
 
-- (IBAction)saveSettingsAndClose:(id)sender
-{
-
-}
-
 - (id)initWithWindow:(NSWindow *)window
 {
     self = [super initWithWindow:window];
