@@ -25,9 +25,11 @@
 	prefsWindow = [[PreferencesWindowController alloc] initWithWindowNibName:@"Preferences"];
 	[[prefsWindow window] makeKeyAndOrderFront:self];
 }
-- (IBAction) clear:(id)sender
+- (IBAction) clearNotifications:(id)sender
 {
 	[_managedObjectContext reset];
+	userNotifications = [[NSMutableArray alloc] init];
+	[notificationsTable reloadData];
 }
 - (IBAction) refresh:(id)sender
 {
@@ -60,23 +62,37 @@
 }
 - (void) refreshNotifications
 {
-	printf("Refreshing notifications...");
+	printf("Refreshing notifications...\n");
 	NSUserDefaults *site = [NSUserDefaults standardUserDefaults];
 	
 	NSURL *url = [NSURL URLWithString:[site objectForKey:@"url"]];
 	NSString *accessKey = [site objectForKey:@"accessKey"];
 	NSString *secretKey = [site objectForKey:@"secretKey"];
 	
-	NSString *path = @"/rest/notifications/list.json";
+	if(url == nil || accessKey == nil || secretKey == nil)
+	{
+		return;
+	}
+	
+	NSString *path = @"";
+	
+	if (![[[url path] substringFromIndex: [[url path] length] -1] isEqualToString:@"/"] )
+	{
+		path = @"/rest/notifications/list.json";
+	} else {
+		path = @"rest/notifications/list.json";
+	}
 	
 	NSString *query = @"unread=1";
 	
 	NSURL *fullUrl = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@?%@", url, path, query]];
 	
+	NSLog(@"%@", fullUrl);
 	NSDictionary *request = [NSDictionary dictionaryWithObjectsAndKeys:fullUrl, @"url", accessKey, @"access_key", secretKey, @"secret_key", nil];
 	
 	NSError *error = nil;
 	NSString *response = [self request:request];
+	
 	NSData *jsonString = [response dataUsingEncoding:NSUTF8StringEncoding];
 	NSDictionary *jsonDict = [[CJSONDeserializer deserializer] deserializeAsDictionary:jsonString error:&error];
 	//	NSLog(@"%@", response);
@@ -111,6 +127,7 @@
 		NSError *error = nil;
 		NSArray *notificationResults = [context executeFetchRequest:fetchRequest error:&error];
 		
+		NSLog(@"%@", notificationResults);
 		// Does the notification already exist? If so, update it.
 		if([notificationResults count] == 0) {
 			Notification *notification = [NSEntityDescription insertNewObjectForEntityForName:@"Notification" inManagedObjectContext:context];
@@ -219,7 +236,7 @@
 		//			[notification setObject:message forKey:@"message"];
 		//			[userNotifications addObject:notification];
 		//		}
-		[notificationsTable reloadData];
+		
 		//	NSTimeInterval *seconds = [[NSNumber alloc] initWithInt:300];
 		NSTimeInterval seconds = 300;
 		NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:seconds target:self selector:@selector(refreshNotifications) userInfo:nil repeats:YES];

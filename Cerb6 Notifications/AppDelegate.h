@@ -23,7 +23,7 @@
 @property (weak) IBOutlet NSTableView *notificationsTable;
 
 - (IBAction) refresh:(id)sender;
-- (IBAction) clear:(id)sender;
+- (IBAction) clearNotifications:(id)sender;
 - (IBAction) openPrefs:(id)sender;
 - (IBAction) openNotification:(id)sender;
 

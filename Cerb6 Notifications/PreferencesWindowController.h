@@ -10,11 +10,6 @@
 
 @interface PreferencesWindowController : NSWindowController
 
-@property (weak) IBOutlet NSString *url;
-@property (weak) IBOutlet NSString *accessKey;
-@property (weak) IBOutlet NSString *secretKey;
-@property (weak) IBOutlet NSNumber *prettyURLs;
-
 - (void)controlTextDidChange:(NSNotification *)notification;
-- (IBAction)togglePrettyURLs:(id)sender;
+
 @end
