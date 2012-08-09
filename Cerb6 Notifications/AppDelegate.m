@@ -20,32 +20,48 @@
 @synthesize userNotifications;
 @synthesize notificationsTable;
 
-- (IBAction) openPrefs:(id)sender
-{
-	prefsWindow = [[PreferencesWindowController alloc] initWithWindowNibName:@"Preferences"];
-	[[prefsWindow window] makeKeyAndOrderFront:self];
-}
 - (IBAction) clearNotifications:(id)sender
 {
-	[_managedObjectContext reset];
 	userNotifications = [[NSMutableArray alloc] init];
+
+	NSManagedObjectContext *context = [self managedObjectContext];
+	NSEntityDescription *entity = [NSEntityDescription entityForName:@"Notification" inManagedObjectContext:context];
+
+	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+	[fetchRequest setEntity:entity];
+	
+	NSError *error = nil;
+    NSArray *items = [context executeFetchRequest:fetchRequest error:&error];
+	
+    for (Notification *notification in items) {
+        [context deleteObject:notification];
+    }
+	
 	[notificationsTable reloadData];
 }
-- (IBAction) refresh:(id)sender
-{
-	[self refreshNotifications];
-}
 
-- (IBAction) openNotification:(id)sender
+- (IBAction) deleteNotification:(id)sender
 {
 	NSInteger selectedRow = [notificationsTable selectedRow];
-	NSLog(@"%ld", selectedRow);
 	if(selectedRow == -1) {
 		return;
 	}
 	
 	Notification *notification = [userNotifications objectAtIndex:[notificationsTable selectedRow]];
-	NSLog(@"%@", notification);
+	
+	NSManagedObjectContext *context = [self managedObjectContext];
+	[context deleteObject:notification];
+	[self reloadTableFromStore];
+}
+
+- (IBAction) openNotification:(id)sender
+{
+	NSInteger selectedRow = [notificationsTable selectedRow];
+	if(selectedRow == -1) {
+		return;
+	}
+	
+	Notification *notification = [userNotifications objectAtIndex:[notificationsTable selectedRow]];
 	
 	NSManagedObjectContext *context = [self managedObjectContext];
 	
@@ -58,26 +74,50 @@
 	}
 	
 	[[NSWorkspace sharedWorkspace] openURL: [NSURL URLWithString:notification.urlMarkRead]];
+	
+	[self reloadTableFromStore];
+}
+
+- (IBAction) openPrefs:(id)sender
+{
+	prefsWindow = [[PreferencesWindowController alloc] initWithWindowNibName:@"Preferences"];
+	[[prefsWindow window] makeKeyAndOrderFront:self];
+}
+
+- (IBAction) refresh:(id)sender
+{
 	[self refreshNotifications];
 }
+
+- (void) reloadTableFromStore
+{
+	NSManagedObjectContext *context = [self managedObjectContext];
+	NSEntityDescription *entity = [NSEntityDescription entityForName:@"Notification" inManagedObjectContext:context];
+	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+	NSError *error = nil;
+	
+	[fetchRequest setEntity:entity];
+	
+	userNotifications = [NSMutableArray arrayWithArray:[context executeFetchRequest:fetchRequest error:&error]];
+	[notificationsTable reloadData];
+}
+
 - (void) refreshNotifications
 {
-	printf("Refreshing notifications...\n");
+//	printf("Refreshing notifications...\n");
 	NSUserDefaults *site = [NSUserDefaults standardUserDefaults];
 	
 	NSURL *url = [NSURL URLWithString:[site objectForKey:@"url"]];
 	NSString *accessKey = [site objectForKey:@"accessKey"];
 	NSString *secretKey = [site objectForKey:@"secretKey"];
 	
-	if(url == nil || accessKey == nil || secretKey == nil)
-	{
+	if(url == nil || accessKey == nil || secretKey == nil) {
 		return;
 	}
 	
 	NSString *path = @"";
 	
-	if (![[[url path] substringFromIndex: [[url path] length] -1] isEqualToString:@"/"] )
-	{
+	if (![[[url path] substringFromIndex: [[url path] length] -1] isEqualToString:@"/"] ) {
 		path = @"/rest/notifications/list.json";
 	} else {
 		path = @"rest/notifications/list.json";
@@ -87,7 +127,7 @@
 	
 	NSURL *fullUrl = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@?%@", url, path, query]];
 	
-	NSLog(@"%@", fullUrl);
+//	NSLog(@"%@", fullUrl);
 	NSDictionary *request = [NSDictionary dictionaryWithObjectsAndKeys:fullUrl, @"url", accessKey, @"access_key", secretKey, @"secret_key", nil];
 	
 	NSError *error = nil;
@@ -112,7 +152,7 @@
 	
 	for (id key in results) {
 		NSDictionary *notificationDict = [results objectForKey:key];
-		//		NSLog(@"%@", [results objectForKey:key]);
+//		NSLog(@"%@", [results objectForKey:key]);
 		
 		NSNumber *notificationId = [[NSNumber alloc] initWithInteger:[[[NSString alloc] initWithString:[notificationDict objectForKey:@"id"]] integerValue]];
 		NSString *message = [notificationDict objectForKey:@"message"];
@@ -127,7 +167,7 @@
 		NSError *error = nil;
 		NSArray *notificationResults = [context executeFetchRequest:fetchRequest error:&error];
 		
-		NSLog(@"%@", notificationResults);
+//		NSLog(@"%@", notificationResults);
 		// Does the notification already exist? If so, update it.
 		if([notificationResults count] == 0) {
 			Notification *notification = [NSEntityDescription insertNewObjectForEntityForName:@"Notification" inManagedObjectContext:context];
@@ -138,9 +178,10 @@
 			notification.urlMarkRead = urlMarkRead;
 			notification.isRead = isRead;
 			notification.created = created;
-
-			[self deliverNotificationWithTitle:@"Cerb6" message:message];
-			//			NSLog(@"%@", notification);
+			
+			NSDictionary *notificationInfo = [[NSDictionary alloc] initWithObjectsAndKeys:notificationId, @"notificationId", nil];
+			[self deliverNotificationWithTitle:@"Cerb6 Notification" message:message notificationInfo:notificationInfo];
+//			NSLog(@"%@", notification);
 		} else {
 			// Only one notification per id, so grab the first one in the result set
 			Notification *notification = [notificationResults objectAtIndex:0];
@@ -153,10 +194,7 @@
 			NSLog(@"%@", error);
 		}
 	}
-	[fetchRequest setPredicate:nil];
-	userNotifications = [NSMutableArray arrayWithArray:[context executeFetchRequest:fetchRequest error:&error]];
-	
-	[notificationsTable reloadData];
+	[self reloadTableFromStore];
 }
 
 - (NSString *)request:(NSDictionary *)request
@@ -179,19 +217,19 @@
 	
 	// Signature
 	NSString *strToSign = [NSString stringWithFormat:
-						   @"%@\n" // verb
-						   @"%@\n" // date
-						   @"%@\n" // url path
-						   @"%@\n" // url query
-						   @"%@\n" // payload
-						   @"%@\n" // secret
-						   ,
-						   @"GET",
-						   strHttpDate,
-						   [[request objectForKey:@"url"] path],
-						   [[request objectForKey:@"url"] query],
-						   @"",
-						   [Utils md5FromString: secretKey]
+							   @"%@\n" // verb
+							   @"%@\n" // date
+							   @"%@\n" // url path
+							   @"%@\n" // url query
+							   @"%@\n" // payload
+							   @"%@\n" // secret
+							   ,
+							   @"GET",
+							   strHttpDate,
+							   [[request objectForKey:@"url"] path],
+							   [[request objectForKey:@"url"] query],
+							   @"",
+							   [Utils md5FromString: secretKey]
 						   ];
 	
 	NSString *strHash = [NSString stringWithString: [Utils md5FromString:strToSign]];
@@ -213,61 +251,34 @@
 }
 
 
-- (void)applicationDidFinishLaunching:(NSNotification *)clickedNotification
+- (void)applicationDidFinishLaunching:(NSNotification *)notification
 {
 	
 	userNotifications = [[NSMutableArray alloc] init];
 	
-	NSUserNotification *userNotification = clickedNotification.userInfo[NSApplicationLaunchUserNotificationKey];
-	
-	//	self.userNotifications = [NSMutableDictionary new];
-	
-	if(userNotification) {
-		[self userActivatedNotification:userNotification];
-	} else {
-//		[self refreshNotifications];
-		
-		//		NSString *message = @"Test";
-		//		NSNumber *notificationId = [NSNumber numberWithInt:1];
-		//		for(int i = 1; i < 11; i++) {
-		//			NSMutableDictionary *notification = [[NSMutableDictionary alloc] init];
-		//			notificationId = [NSNumber numberWithInt:i];
-		//			[notification setObject:notificationId forKey:@"notificationId"];
-		//			[notification setObject:message forKey:@"message"];
-		//			[userNotifications addObject:notification];
-		//		}
-		
-		//	NSTimeInterval *seconds = [[NSNumber alloc] initWithInt:300];
-		NSTimeInterval seconds = 300;
-		NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:seconds target:self selector:@selector(refreshNotifications) userInfo:nil repeats:YES];
-		[timer fire];
-	}
-
+	NSTimeInterval seconds = 300;
+	NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:seconds target:self selector:@selector(refreshNotifications) userInfo:nil repeats:YES];
+	[timer fire];
 }
 
-- (void)deliverNotificationWithTitle:(NSString *)title
-							 message:(NSString *)message
+- (void)deliverNotificationWithTitle:(NSString *)title message:(NSString *)message notificationInfo:(NSDictionary *)notificationInfo
 {
-	
 	NSUserNotificationCenter *center = [NSUserNotificationCenter defaultUserNotificationCenter];
 	NSUserNotification *userNotification = nil;
 	
 	userNotification = [NSUserNotification new];
 	userNotification.title = title;
+//	userNotification.subtitle = @"Test";
 	userNotification.informativeText = message;
+	userNotification.userInfo = notificationInfo;
 	
 	center.delegate = self;
 	[center scheduleNotification:userNotification];
 }
 
-- (void)userActivatedNotification:(NSUserNotification *)userNotification
+- (void) userNotificationCenter:(NSUserNotificationCenter *)center didActivateNotification:(NSUserNotification *)clickedNotification
 {
-    //	[[NSUserNotificationCenter defaultUserNotificationCenter] removeDeliveredNotification:userNotification];
-	
-	printf("* User activated notification:");
-    //	NSLog(@"Title: %@", userNotification.title);just do it in
-    //	NSLog(@"Message: %@", userNotification.informativeText);
-	[[NSWorkspace sharedWorkspace] openURL: [NSURL URLWithString:@"https://www.google.com/"]];
+	NSLog(@"%@", clickedNotification.userInfo);
 }
 
 - (BOOL)userNotificationCenter:(NSUserNotificationCenter *)center
@@ -283,30 +294,31 @@
 	return [userNotifications count];
 }
 
-- (id) tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row
-{
+- (NSView *) tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
+	
 	if(userNotifications == nil) {
-		return @"empty";
+		return nil;
 	}
 	
 	// Grab the column identifier
-	NSString *columnIdentifier = tableColumn.identifier;
-//	NSString *key = [[[userNotifications keyEnumerator] allObjects] objectAtIndex:row];
+	NSString *identifier = tableColumn.identifier;
+	NSTableCellView *cellView = [tableView makeViewWithIdentifier:identifier owner:self];
 	
 	Notification *notification = [userNotifications objectAtIndex:row];
 	
-	NSString *cellData = @"";
-//	NSLog(@"%@", columnIdentifier);
-	if([columnIdentifier isEqualTo:@"created"]) {
-		cellData = [Utils prettySecs:notification.created];
-	} else if ([columnIdentifier isEqualTo:@"message"]) {
-		cellData = notification.message;
+	if([notification.isRead intValue] == 0) {
+		[[cellView textField] setFont:[NSFont boldSystemFontOfSize:12]];
 	} else {
-//		cellData = notification.url;
-		cellData = @"empty";
+		[[cellView textField] setFont:[NSFont systemFontOfSize:12]];
 	}
-
-	return cellData;
+	
+	if([identifier isEqualTo:@"created"]) {
+		cellView.textField.stringValue = [Utils prettySecs:notification.created];
+	} else if ([identifier isEqualTo:@"message"]) {
+		cellView.textField.stringValue = notification.message;
+	}
+	
+	return cellView;
 }
 
 

@@ -26,5 +26,6 @@
 - (IBAction) clearNotifications:(id)sender;
 - (IBAction) openPrefs:(id)sender;
 - (IBAction) openNotification:(id)sender;
+- (IBAction) deleteNotification:(id)sender;
 
 @end

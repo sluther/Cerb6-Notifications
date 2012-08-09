@@ -38,26 +38,30 @@
 	
 	if(elapsed > 86400) {
 		out = [NSString stringWithFormat:
-			   @"%d days%@",
+			   @"%d day%@%@",
 			   elapsed / 86400,
+			   elapsed / 86400 > 1 ? @"s" : @"",
 			   (is_past) ? @" ago" : @""
 			   ];
 	} else if(elapsed > 3600) {
 		out = [NSString stringWithFormat:
-			   @"%d hours%@",
+			   @"%d hour%@%@",
 			   elapsed / 3600,
+			   elapsed / 3600 > 1 ? @"s" : @"",
 			   (is_past) ? @" ago" : @""
 			   ];
 	} else if(elapsed > 60) {
 		out = [NSString stringWithFormat:
-			   @"%d minutes%@",
+			   @"%d minute%@%@",
 			   elapsed / 60,
+			   elapsed / 60 > 1 ? @"s" : @"",
 			   (is_past) ? @" ago" : @""
 			   ];
 	} else {
 		out = [NSString stringWithFormat:
-			   @"%d seconds%@",
+			   @"%d second%@%@",
 			   elapsed,
+			   elapsed > 1 ? @"s" : @"",
 			   (is_past) ? @" ago" : @""
 			   ];
 	}

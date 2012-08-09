@@ -13,6 +13,7 @@
 		1B01C2F115D259220082D68C /* PreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B01C2ED15D259220082D68C /* PreferencesWindowController.m */; };
 		1B78D44915D0A4FC00E3B71A /* Notification.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B78D44815D0A4FC00E3B71A /* Notification.m */; };
 		1B78D44D15D1081A00E3B71A /* NotificationsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B78D44C15D1081A00E3B71A /* NotificationsView.m */; };
+		1B84756815D39BD10055815C /* NotificationTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B84756715D39BD10055815C /* NotificationTableCell.m */; };
 		1B98AAD015CB6322004BE94F /* CDataScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B98AABB15CB6322004BE94F /* CDataScanner.m */; };
 		1B98AAD115CB6322004BE94F /* CDataScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B98AABB15CB6322004BE94F /* CDataScanner.m */; };
 		1B98AAD215CB6322004BE94F /* CFilteringJSONSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B98AABE15CB6322004BE94F /* CFilteringJSONSerializer.m */; };
@@ -64,6 +65,8 @@
 		1B78D44815D0A4FC00E3B71A /* Notification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Notification.m; sourceTree = "<group>"; };
 		1B78D44B15D1081A00E3B71A /* NotificationsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationsView.h; sourceTree = "<group>"; };
 		1B78D44C15D1081A00E3B71A /* NotificationsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationsView.m; sourceTree = "<group>"; };
+		1B84756615D39BD10055815C /* NotificationTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationTableCell.h; sourceTree = "<group>"; };
+		1B84756715D39BD10055815C /* NotificationTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationTableCell.m; sourceTree = "<group>"; };
 		1B98AABA15CB6322004BE94F /* CDataScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDataScanner.h; sourceTree = "<group>"; };
 		1B98AABB15CB6322004BE94F /* CDataScanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDataScanner.m; sourceTree = "<group>"; };
 		1B98AABD15CB6322004BE94F /* CFilteringJSONSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFilteringJSONSerializer.h; sourceTree = "<group>"; };
@@ -227,6 +230,8 @@
 				1B01C2EC15D259220082D68C /* PreferencesWindowController.h */,
 				1B01C2ED15D259220082D68C /* PreferencesWindowController.m */,
 				1BDE6B9015C678E800A3E311 /* Supporting Files */,
+				1B84756615D39BD10055815C /* NotificationTableCell.h */,
+				1B84756715D39BD10055815C /* NotificationTableCell.m */,
 			);
 			path = "Cerb6 Notifications";
 			sourceTree = "<group>";
@@ -388,6 +393,7 @@
 				1B78D44915D0A4FC00E3B71A /* Notification.m in Sources */,
 				1B78D44D15D1081A00E3B71A /* NotificationsView.m in Sources */,
 				1B01C2F015D259220082D68C /* PreferencesWindowController.m in Sources */,
+				1B84756815D39BD10055815C /* NotificationTableCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
