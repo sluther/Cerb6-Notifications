@@ -22,6 +22,8 @@
 @property NSMutableArray *userNotifications;
 @property NSMutableArray *queuedNotifications;
 
+@property NSDockTile *dockIcon;
+
 @property NSStatusItem *statusItem;
 
 @property (weak) IBOutlet NSMenu *statusMenu;

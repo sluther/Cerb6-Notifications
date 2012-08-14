@@ -20,6 +20,8 @@
 @synthesize userNotifications;
 @synthesize queuedNotifications;
 
+@synthesize dockIcon;
+
 @synthesize statusItem;
 @synthesize statusMenu;
 @synthesize menuStatusItem;
@@ -125,6 +127,20 @@
 	[fetchRequest setEntity:entity];
 	
 	userNotifications = [NSMutableArray arrayWithArray:[context executeFetchRequest:fetchRequest error:&error]];
+	
+	NSInteger unreadNotifications = 0;
+	NSInteger totalnotifications = [userNotifications count];
+	
+	// Count unread notifications for dock icon/status menu item
+	for(NSInteger i = 0; i < totalnotifications; i++) {
+		Notification *notification = [userNotifications objectAtIndex:i];
+		if([notification.isRead boolValue] == NO) {
+			unreadNotifications++;
+		}
+	}
+	
+	NSString *badgeLabel = [[NSString alloc] initWithFormat:@"%ld", unreadNotifications];
+	[[self dockIcon] setBadgeLabel:badgeLabel];
 	[notificationsTable reloadData];
 }
 
@@ -282,6 +298,7 @@
 {
 	userNotifications = [[NSMutableArray alloc] init];
 	queuedNotifications = [[NSMutableArray alloc] init];
+	dockIcon = [[NSDockTile alloc] init];
 	
 	// Register timer
 	NSTimeInterval seconds = 300;
