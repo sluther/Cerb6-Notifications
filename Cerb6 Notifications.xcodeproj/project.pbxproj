@@ -11,6 +11,7 @@
 		1B01C2EF15D259220082D68C /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B01C2EB15D259220082D68C /* Preferences.xib */; };
 		1B01C2F015D259220082D68C /* PreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B01C2ED15D259220082D68C /* PreferencesWindowController.m */; };
 		1B01C2F115D259220082D68C /* PreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B01C2ED15D259220082D68C /* PreferencesWindowController.m */; };
+		1B0BD76215D9D099007DF000 /* Cerby.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B0BD76115D9D099007DF000 /* Cerby.png */; };
 		1B78D44915D0A4FC00E3B71A /* Notification.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B78D44815D0A4FC00E3B71A /* Notification.m */; };
 		1B78D44D15D1081A00E3B71A /* NotificationsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B78D44C15D1081A00E3B71A /* NotificationsView.m */; };
 		1B84756815D39BD10055815C /* NotificationTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B84756715D39BD10055815C /* NotificationTableCell.m */; };
@@ -45,6 +46,7 @@
 		1BDE6BA915C678E800A3E311 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BDE6B8915C678E800A3E311 /* Cocoa.framework */; };
 		1BDE6BB115C678E800A3E311 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1BDE6BAF15C678E800A3E311 /* InfoPlist.strings */; };
 		1BDE6BB415C678E800A3E311 /* Cerb6_NotificationsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDE6BB315C678E800A3E311 /* Cerb6_NotificationsTests.m */; };
+		1BE0DEA815D98DF1007D1C5E /* Cerb.icns in Resources */ = {isa = PBXBuildFile; fileRef = 1BE0DEA715D98DF1007D1C5E /* Cerb.icns */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +63,7 @@
 		1B01C2EB15D259220082D68C /* Preferences.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Preferences.xib; sourceTree = "<group>"; };
 		1B01C2EC15D259220082D68C /* PreferencesWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferencesWindowController.h; sourceTree = "<group>"; };
 		1B01C2ED15D259220082D68C /* PreferencesWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferencesWindowController.m; sourceTree = "<group>"; };
+		1B0BD76115D9D099007DF000 /* Cerby.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Cerby.png; sourceTree = "<group>"; };
 		1B78D44715D0A4FC00E3B71A /* Notification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Notification.h; sourceTree = "<group>"; };
 		1B78D44815D0A4FC00E3B71A /* Notification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Notification.m; sourceTree = "<group>"; };
 		1B78D44B15D1081A00E3B71A /* NotificationsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationsView.h; sourceTree = "<group>"; };
@@ -108,6 +111,7 @@
 		1BDE6BB015C678E800A3E311 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1BDE6BB215C678E800A3E311 /* Cerb6_NotificationsTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Cerb6_NotificationsTests.h; sourceTree = "<group>"; };
 		1BDE6BB315C678E800A3E311 /* Cerb6_NotificationsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Cerb6_NotificationsTests.m; sourceTree = "<group>"; };
+		1BE0DEA715D98DF1007D1C5E /* Cerb.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Cerb.icns; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -239,6 +243,8 @@
 		1BDE6B9015C678E800A3E311 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				1B0BD76115D9D099007DF000 /* Cerby.png */,
+				1BE0DEA715D98DF1007D1C5E /* Cerb.icns */,
 				1BDE6B9115C678E800A3E311 /* Cerb6 Notifications-Info.plist */,
 				1BDE6B9215C678E800A3E311 /* InfoPlist.strings */,
 				1BDE6B9515C678E800A3E311 /* main.m */,
@@ -342,6 +348,8 @@
 				1BDE6B9A15C678E800A3E311 /* Credits.rtf in Resources */,
 				1BDE6BA015C678E800A3E311 /* MainMenu.xib in Resources */,
 				1B01C2EE15D259220082D68C /* Preferences.xib in Resources */,
+				1BE0DEA815D98DF1007D1C5E /* Cerb.icns in Resources */,
+				1B0BD76215D9D099007DF000 /* Cerby.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
