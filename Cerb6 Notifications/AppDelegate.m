@@ -106,7 +106,6 @@
 			Notification *queuedNotification = [queuedNotifications objectAtIndex:i];
 			
 			NSInteger loc = [userNotifications indexOfObject:queuedNotification];
-			NSLog(@"Location: %lu", loc);
 			
 			NSNumber *location = [NSNumber numberWithInteger:loc];
 			NSDictionary *notificationInfo = [[NSDictionary alloc] initWithObjectsAndKeys:location, @"loc", nil];
@@ -343,6 +342,7 @@
 
 - (void) userNotificationCenter:(NSUserNotificationCenter *)center didActivateNotification:(NSUserNotification *)clickedNotification
 {
+	[[NSUserNotificationCenter defaultUserNotificationCenter] removeDeliveredNotification:clickedNotification];
 	NSIndexSet *indexSet = [NSIndexSet indexSetWithIndex:[[clickedNotification.userInfo objectForKey:@"loc"] integerValue]];
 	[notificationsTable selectRowIndexes:indexSet byExtendingSelection:NO];
 }
@@ -371,7 +371,7 @@
 	NSTableCellView *cellView = [tableView makeViewWithIdentifier:identifier owner:self];
 	
 	Notification *notification = [userNotifications objectAtIndex:row];
-	if([notification.isRead intValue] == 0) {
+	if([notification.isRead boolValue] == NO) {
 		[[cellView textField] setFont:[NSFont boldSystemFontOfSize:12]];
 	} else {
 		[[cellView textField] setFont:[NSFont systemFontOfSize:12]];

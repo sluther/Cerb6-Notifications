@@ -12,6 +12,7 @@
 
 - (id)initWithWindow:(NSWindow *)window
 {
+	// Implement NSPreferences & NSPreferencesModule
     self = [super initWithWindow:window];
     if (self) {
         // Initialization code here.
