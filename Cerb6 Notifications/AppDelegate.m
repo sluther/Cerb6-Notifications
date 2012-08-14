@@ -69,32 +69,20 @@
 		return;
 	}
 	
-	Notification *notification = [userNotifications objectAtIndex:[notificationsTable selectedRow]];
+	Notification *selectedNotification = [userNotifications objectAtIndex:[notificationsTable selectedRow]];
 	
-	NSManagedObjectContext *context = [self managedObjectContext];
-	
-	NSError *error = nil;
-	
-	notification.isRead = [NSNumber numberWithInt:1];
-	
-	if(![context save:&error]) {
-		NSLog(@"%@", error);
-	}
-	
-	[[NSWorkspace sharedWorkspace] openURL: [NSURL URLWithString:notification.urlMarkRead]];
-	
-	[self reloadTableFromStore];
-}
-
-- (IBAction) openPrefs:(id)sender
-{
-	prefsWindow = [[PreferencesWindowController alloc] initWithWindowNibName:@"Preferences"];
-	[[prefsWindow window] makeKeyAndOrderFront:self];
+	[self redirectToBrowser:selectedNotification];
 }
 
 - (IBAction) refresh:(id)sender
 {
 	[self refreshNotifications];
+}
+
+- (IBAction) showPrefsWindow:(id)sender
+{
+	prefsWindow = [[PreferencesWindowController alloc] initWithWindowNibName:@"Preferences"];
+	[[prefsWindow window] makeKeyAndOrderFront:self];
 }
 
 - (void) deliverQueuedNotifications
@@ -114,6 +102,32 @@
 		
 		[queuedNotifications removeAllObjects];
 	}
+}
+
+- (void) doubleClick:(id)sender
+{
+	NSInteger row = [notificationsTable clickedRow];
+	
+	Notification *clickedNotification = [userNotifications objectAtIndex:row];
+	
+	[self redirectToBrowser:clickedNotification];
+}
+
+- (void) redirectToBrowser:(Notification *)notification
+{
+	NSManagedObjectContext *context = [self managedObjectContext];
+	
+	NSError *error = nil;
+	
+	notification.isRead = [NSNumber numberWithInt:1];
+	
+	if(![context save:&error]) {
+		NSLog(@"%@", error);
+	}
+	
+	[[NSWorkspace sharedWorkspace] openURL: [NSURL URLWithString:notification.urlMarkRead]];
+	
+	[self reloadTableFromStore];
 }
 
 - (void) reloadTableFromStore
@@ -292,6 +306,11 @@
 	return [[NSString alloc] initWithData:urlData encoding:NSUTF8StringEncoding];
 }
 
+- (void)awakeFromNib
+{
+	[notificationsTable setTarget:self];
+	[notificationsTable setDoubleAction:@selector(doubleClick:)];
+}
 
 - (void)applicationDidFinishLaunching:(NSNotification *)notification
 {

@@ -35,7 +35,7 @@
 - (IBAction) clearNotifications:(id)sender;
 - (IBAction) deleteNotification:(id)sender;
 - (IBAction) openNotification:(id)sender;
-- (IBAction) openPrefs:(id)sender;
+- (IBAction) showPrefsWindow:(id)sender;
 - (IBAction) refresh:(id)sender;
 
 @end
