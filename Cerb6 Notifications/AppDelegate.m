@@ -20,6 +20,10 @@
 @synthesize userNotifications;
 @synthesize queuedNotifications;
 
+@synthesize statusItem;
+@synthesize statusMenu;
+@synthesize menuStatusItem;
+
 @synthesize notificationsTable;
 
 - (IBAction) clearNotifications:(id)sender
@@ -279,9 +283,30 @@
 	userNotifications = [[NSMutableArray alloc] init];
 	queuedNotifications = [[NSMutableArray alloc] init];
 	
+	// Register timer
 	NSTimeInterval seconds = 300;
 	NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:seconds target:self selector:@selector(refreshNotifications) userInfo:nil repeats:YES];
 	[timer fire];
+	
+	// Register status bar
+	NSStatusBar *statusBar = [[NSStatusBar alloc] init];
+	
+	// Make the status item
+	statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSSquareStatusItemLength];
+	
+	// Grab the image
+	NSImage *statusIcon = [NSImage imageNamed:@"Cerby.png"];
+	
+	// Make a square based on the thickness of the statusBar
+	NSSize statusItemSize = NSMakeSize(statusBar.thickness, statusBar.thickness-3);
+	NSImage *statusImage = [statusIcon copy];
+	[statusImage setScalesWhenResized: YES];
+	[statusImage setSize: statusItemSize];
+	
+	// Setup the statusItem
+	[statusItem setImage: statusImage];
+	[statusItem setHighlightMode:YES];
+	[statusItem setMenu:statusMenu];
 }
 
 - (void)deliverNotificationWithTitle:(NSString *)title message:(NSString *)message notificationInfo:(NSDictionary *)notificationInfo

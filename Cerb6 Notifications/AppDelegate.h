@@ -22,6 +22,11 @@
 @property NSMutableArray *userNotifications;
 @property NSMutableArray *queuedNotifications;
 
+@property NSStatusItem *statusItem;
+
+@property (weak) IBOutlet NSMenu *statusMenu;
+@property (weak) IBOutlet NSMenuItem *menuStatusItem;
+
 @property (weak) IBOutlet NSTableView *notificationsTable;
 
 
