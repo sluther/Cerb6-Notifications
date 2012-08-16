@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1B01C2EE15D259220082D68C /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B01C2EB15D259220082D68C /* Preferences.xib */; };
-		1B01C2EF15D259220082D68C /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B01C2EB15D259220082D68C /* Preferences.xib */; };
+		1B01484415DB20740080C75C /* MainWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B01484315DB20740080C75C /* MainWindowController.m */; };
+		1B01484915DB2DEB0080C75C /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B01484815DB2DEB0080C75C /* MainWindow.xib */; };
+		1B01C2EE15D259220082D68C /* PreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B01C2EB15D259220082D68C /* PreferencesWindow.xib */; };
+		1B01C2EF15D259220082D68C /* PreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1B01C2EB15D259220082D68C /* PreferencesWindow.xib */; };
 		1B01C2F015D259220082D68C /* PreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B01C2ED15D259220082D68C /* PreferencesWindowController.m */; };
 		1B01C2F115D259220082D68C /* PreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B01C2ED15D259220082D68C /* PreferencesWindowController.m */; };
 		1B0BD76215D9D099007DF000 /* Cerby.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B0BD76115D9D099007DF000 /* Cerby.png */; };
@@ -60,7 +62,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1B01C2EB15D259220082D68C /* Preferences.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Preferences.xib; sourceTree = "<group>"; };
+		1B01484215DB20740080C75C /* MainWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainWindowController.h; sourceTree = "<group>"; };
+		1B01484315DB20740080C75C /* MainWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainWindowController.m; sourceTree = "<group>"; };
+		1B01484815DB2DEB0080C75C /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
+		1B01C2EB15D259220082D68C /* PreferencesWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PreferencesWindow.xib; sourceTree = "<group>"; };
 		1B01C2EC15D259220082D68C /* PreferencesWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferencesWindowController.h; sourceTree = "<group>"; };
 		1B01C2ED15D259220082D68C /* PreferencesWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferencesWindowController.m; sourceTree = "<group>"; };
 		1B0BD76115D9D099007DF000 /* Cerby.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Cerby.png; sourceTree = "<group>"; };
@@ -228,11 +233,14 @@
 				1BDE6B9B15C678E800A3E311 /* AppDelegate.h */,
 				1BDE6B9C15C678E800A3E311 /* AppDelegate.m */,
 				1BDE6B9E15C678E800A3E311 /* MainMenu.xib */,
+				1B01484215DB20740080C75C /* MainWindowController.h */,
+				1B01484315DB20740080C75C /* MainWindowController.m */,
+				1B01484815DB2DEB0080C75C /* MainWindow.xib */,
 				1B78D44B15D1081A00E3B71A /* NotificationsView.h */,
 				1B78D44C15D1081A00E3B71A /* NotificationsView.m */,
-				1B01C2EB15D259220082D68C /* Preferences.xib */,
 				1B01C2EC15D259220082D68C /* PreferencesWindowController.h */,
 				1B01C2ED15D259220082D68C /* PreferencesWindowController.m */,
+				1B01C2EB15D259220082D68C /* PreferencesWindow.xib */,
 				1BDE6B9015C678E800A3E311 /* Supporting Files */,
 				1B84756615D39BD10055815C /* NotificationTableCell.h */,
 				1B84756715D39BD10055815C /* NotificationTableCell.m */,
@@ -347,9 +355,10 @@
 				1BDE6B9415C678E800A3E311 /* InfoPlist.strings in Resources */,
 				1BDE6B9A15C678E800A3E311 /* Credits.rtf in Resources */,
 				1BDE6BA015C678E800A3E311 /* MainMenu.xib in Resources */,
-				1B01C2EE15D259220082D68C /* Preferences.xib in Resources */,
+				1B01C2EE15D259220082D68C /* PreferencesWindow.xib in Resources */,
 				1BE0DEA815D98DF1007D1C5E /* Cerb.icns in Resources */,
 				1B0BD76215D9D099007DF000 /* Cerby.png in Resources */,
+				1B01484915DB2DEB0080C75C /* MainWindow.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -358,7 +367,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1BDE6BB115C678E800A3E311 /* InfoPlist.strings in Resources */,
-				1B01C2EF15D259220082D68C /* Preferences.xib in Resources */,
+				1B01C2EF15D259220082D68C /* PreferencesWindow.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -402,6 +411,7 @@
 				1B78D44D15D1081A00E3B71A /* NotificationsView.m in Sources */,
 				1B01C2F015D259220082D68C /* PreferencesWindowController.m in Sources */,
 				1B84756815D39BD10055815C /* NotificationTableCell.m in Sources */,
+				1B01484415DB20740080C75C /* MainWindowController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

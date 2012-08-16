@@ -7,11 +7,14 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "MainWindowController.h"
 #import "PreferencesWindowController.h"
 
-@interface AppDelegate : NSObject <NSApplicationDelegate, NSUserNotificationCenterDelegate, NSTableViewDataSource, NSTableViewDelegate> {
-	
-	PreferencesWindowController *prefsWindow;
+
+
+@interface AppDelegate : NSObject <NSApplicationDelegate, NSUserNotificationCenterDelegate> {
+	MainWindowController *mainWindowController;
+	PreferencesWindowController *prefsWindowController;
 }
 
 // Core Data
@@ -29,13 +32,16 @@
 @property (weak) IBOutlet NSMenu *statusMenu;
 @property (weak) IBOutlet NSMenuItem *menuStatusItem;
 
-@property (weak) IBOutlet NSTableView *notificationsTable;
-
+@property IBOutlet NSWindow *mainWindow;
 
 - (IBAction) clearNotifications:(id)sender;
 - (IBAction) deleteNotification:(id)sender;
 - (IBAction) openNotification:(id)sender;
 - (IBAction) showPrefsWindow:(id)sender;
 - (IBAction) refresh:(id)sender;
+
+//- (void) refreshNotifications;
+- (void) reloadTableFromStore;
+- (void) redirectToBrowser:(Notification *)clickedNotification;
 
 @end

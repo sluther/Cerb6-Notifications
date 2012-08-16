@@ -17,7 +17,6 @@
 @synthesize managedObjectModel = _managedObjectModel;
 @synthesize managedObjectContext = _managedObjectContext;
 
-@synthesize userNotifications;
 @synthesize queuedNotifications;
 
 @synthesize dockIcon;
@@ -26,11 +25,9 @@
 @synthesize statusMenu;
 @synthesize menuStatusItem;
 
-@synthesize notificationsTable;
-
 - (IBAction) clearNotifications:(id)sender
 {
-	userNotifications = [[NSMutableArray alloc] init];
+	mainWindowController.userNotifications = [[NSMutableArray alloc] init];
 
 	NSManagedObjectContext *context = [self managedObjectContext];
 	NSEntityDescription *entity = [NSEntityDescription entityForName:@"Notification" inManagedObjectContext:context];
@@ -50,12 +47,12 @@
 
 - (IBAction) deleteNotification:(id)sender
 {
-	NSInteger selectedRow = [notificationsTable selectedRow];
+	NSInteger selectedRow = [mainWindowController.notificationsTable selectedRow];
 	if(selectedRow == -1) {
 		return;
 	}
 	
-	Notification *notification = [userNotifications objectAtIndex:[notificationsTable selectedRow]];
+	Notification *notification = [mainWindowController.userNotifications objectAtIndex:[mainWindowController.notificationsTable selectedRow]];
 	
 	NSManagedObjectContext *context = [self managedObjectContext];
 	[context deleteObject:notification];
@@ -64,12 +61,12 @@
 
 - (IBAction) openNotification:(id)sender
 {
-	NSInteger selectedRow = [notificationsTable selectedRow];
+	NSInteger selectedRow = [mainWindowController.notificationsTable selectedRow];
 	if(selectedRow == -1) {
 		return;
 	}
 	
-	Notification *selectedNotification = [userNotifications objectAtIndex:[notificationsTable selectedRow]];
+	Notification *selectedNotification = [mainWindowController.userNotifications objectAtIndex:[mainWindowController.notificationsTable selectedRow]];
 	
 	[self redirectToBrowser:selectedNotification];
 }
@@ -79,10 +76,15 @@
 	[self refreshNotifications];
 }
 
+- (IBAction) showMainWindow:(id)sender
+{
+	[self openMainWindow];
+}
+
 - (IBAction) showPrefsWindow:(id)sender
 {
-	prefsWindow = [[PreferencesWindowController alloc] initWithWindowNibName:@"Preferences"];
-	[[prefsWindow window] makeKeyAndOrderFront:self];
+	prefsWindowController = [[PreferencesWindowController alloc] initWithWindowNibName:@"PreferencesWindow"];
+	[[prefsWindowController window] makeKeyAndOrderFront:self];
 }
 
 - (void) deliverQueuedNotifications
@@ -93,7 +95,7 @@
 			
 			Notification *queuedNotification = [queuedNotifications objectAtIndex:i];
 			
-			NSInteger loc = [userNotifications indexOfObject:queuedNotification];
+			NSInteger loc = [mainWindowController.userNotifications indexOfObject:queuedNotification];
 			
 			NSNumber *location = [NSNumber numberWithInteger:loc];
 			NSDictionary *notificationInfo = [[NSDictionary alloc] initWithObjectsAndKeys:location, @"loc", nil];
@@ -104,30 +106,9 @@
 	}
 }
 
-- (void) doubleClick:(id)sender
+- (void) openMainWindow
 {
-	NSInteger row = [notificationsTable clickedRow];
-	
-	Notification *clickedNotification = [userNotifications objectAtIndex:row];
-	
-	[self redirectToBrowser:clickedNotification];
-}
-
-- (void) redirectToBrowser:(Notification *)notification
-{
-	NSManagedObjectContext *context = [self managedObjectContext];
-	
-	NSError *error = nil;
-	
-	notification.isRead = [NSNumber numberWithInt:1];
-	
-	if(![context save:&error]) {
-		NSLog(@"%@", error);
-	}
-	
-	[[NSWorkspace sharedWorkspace] openURL: [NSURL URLWithString:notification.urlMarkRead]];
-	
-	[self reloadTableFromStore];
+	[[mainWindowController window] makeKeyAndOrderFront:self];
 }
 
 - (void) reloadTableFromStore
@@ -139,7 +120,7 @@
 	
 	[fetchRequest setEntity:entity];
 	
-	userNotifications = [NSMutableArray arrayWithArray:[context executeFetchRequest:fetchRequest error:&error]];
+	NSMutableArray *userNotifications = [NSMutableArray arrayWithArray:[context executeFetchRequest:fetchRequest error:&error]];
 	
 	NSInteger unreadNotifications = 0;
 	NSInteger totalnotifications = [userNotifications count];
@@ -154,7 +135,8 @@
 	
 	NSString *badgeLabel = [[NSString alloc] initWithFormat:@"%ld", unreadNotifications];
 	[[self dockIcon] setBadgeLabel:badgeLabel];
-	[notificationsTable reloadData];
+	mainWindowController.userNotifications = userNotifications;
+	[mainWindowController.notificationsTable reloadData];
 }
 
 - (void) refreshNotifications
@@ -182,7 +164,6 @@
 	
 	NSURL *fullUrl = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@?%@", url, path, query]];
 	
-//	NSLog(@"%@", fullUrl);
 	NSDictionary *request = [NSDictionary dictionaryWithObjectsAndKeys:fullUrl, @"url", accessKey, @"access_key", secretKey, @"secret_key", nil];
 	
 	NSError *error = nil;
@@ -306,17 +287,19 @@
 	return [[NSString alloc] initWithData:urlData encoding:NSUTF8StringEncoding];
 }
 
-- (void)awakeFromNib
-{
-	[notificationsTable setTarget:self];
-	[notificationsTable setDoubleAction:@selector(doubleClick:)];
-}
+//- (BOOL) applicationShouldHandleReopen:(NSApplication *)sender hasVisibleWindows:(BOOL)flag
+//{
+//	if(flag==NO) {
+//		[self openMainWindow];
+//	}
+//	return YES;
+//}
 
 - (void)applicationDidFinishLaunching:(NSNotification *)notification
 {
-	userNotifications = [[NSMutableArray alloc] init];
 	queuedNotifications = [[NSMutableArray alloc] init];
 	dockIcon = [[NSDockTile alloc] init];
+	mainWindowController = [[MainWindowController alloc] initWithWindowNibName:@"MainWindow"];
 	
 	// Register timer
 	NSTimeInterval seconds = 300;
@@ -342,6 +325,7 @@
 	[statusItem setImage: statusImage];
 	[statusItem setHighlightMode:YES];
 	[statusItem setMenu:statusMenu];
+	[self openMainWindow];
 }
 
 - (void)deliverNotificationWithTitle:(NSString *)title message:(NSString *)message notificationInfo:(NSDictionary *)notificationInfo
@@ -363,48 +347,16 @@
 {
 	[[NSUserNotificationCenter defaultUserNotificationCenter] removeDeliveredNotification:clickedNotification];
 	NSIndexSet *indexSet = [NSIndexSet indexSetWithIndex:[[clickedNotification.userInfo objectForKey:@"loc"] integerValue]];
-	[notificationsTable selectRowIndexes:indexSet byExtendingSelection:NO];
+	
+	
+	[mainWindowController.notificationsTable selectRowIndexes:indexSet byExtendingSelection:NO];
 }
 
-- (BOOL)userNotificationCenter:(NSUserNotificationCenter *)center
-	 shouldPresentNotification:(NSUserNotification *)userNotitification
+- (BOOL) userNotificationCenter:(NSUserNotificationCenter *)center shouldPresentNotification:(NSUserNotification *)userNotitification
 {
 	//	printf("* Notification presented.");
 	return YES;
 }
-
-
-- (NSInteger) numberOfRowsInTableView:(NSTableView *)tableView
-{
-	return [userNotifications count];
-}
-
-- (NSView *) tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
-	
-	if(userNotifications == nil) {
-		return nil;
-	}
-	
-	// Grab the column identifier
-	NSString *identifier = tableColumn.identifier;
-	NSTableCellView *cellView = [tableView makeViewWithIdentifier:identifier owner:self];
-	
-	Notification *notification = [userNotifications objectAtIndex:row];
-	if([notification.isRead boolValue] == NO) {
-		[[cellView textField] setFont:[NSFont boldSystemFontOfSize:12]];
-	} else {
-		[[cellView textField] setFont:[NSFont systemFontOfSize:12]];
-	}
-	
-	if([identifier isEqualTo:@"created"]) {
-		cellView.textField.stringValue = [Utils prettySecs:notification.created];
-	} else if ([identifier isEqualTo:@"message"]) {
-		cellView.textField.stringValue = notification.message;
-	}
-	
-	return cellView;
-}
-
 
 // Returns the directory the application uses to store the Core Data store file. This code uses a directory named "com.webgroupmedia.Cerb6_Notifications" in the user's Application Support directory.
 - (NSURL *)applicationFilesDirectory
