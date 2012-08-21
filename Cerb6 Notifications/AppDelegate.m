@@ -111,6 +111,23 @@
 	[[mainWindowController window] makeKeyAndOrderFront:self];
 }
 
+- (void) redirectToBrowser:(Notification *)notification
+{
+	NSManagedObjectContext *context = [self managedObjectContext];
+	
+	NSError *error = nil;
+	
+	notification.isRead = [NSNumber numberWithInt:1];
+	
+	if(![context save:&error]) {
+		NSLog(@"%@", error);
+	}
+	
+	[[NSWorkspace sharedWorkspace] openURL: [NSURL URLWithString:notification.urlMarkRead]];
+	
+	[self reloadTableFromStore];
+}
+
 - (void) reloadTableFromStore
 {
 	NSManagedObjectContext *context = [self managedObjectContext];
