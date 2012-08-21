@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1487" systemVersion="12A269" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Notification" representedClassName="Notification" syncable="YES">
+        <attribute name="created" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="isRead" attributeType="Boolean" syncable="YES"/>
+        <attribute name="message" attributeType="String" syncable="YES"/>
+        <attribute name="notificationId" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="url" attributeType="String" syncable="YES"/>
+        <attribute name="urlMarkRead" attributeType="String" syncable="YES"/>
+        <relationship name="site" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Site" inverseName="notifications" inverseEntity="Site" syncable="YES"/>
+    </entity>
+    <entity name="Site" syncable="YES">
+        <attribute name="accessKey" attributeType="String" syncable="YES"/>
+        <attribute name="name" attributeType="String" defaultValueString="Cerb6" syncable="YES"/>
+        <attribute name="secretKey" attributeType="String" syncable="YES"/>
+        <attribute name="url" attributeType="String" syncable="YES"/>
+        <relationship name="notifications" toMany="YES" minCount="1" deletionRule="Nullify" destinationEntity="Notification" inverseName="site" inverseEntity="Notification" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Notification" positionX="160" positionY="192" width="128" height="148"/>
+        <element name="Site" positionX="160" positionY="192" width="128" height="120"/>
+    </elements>
+</model>

@@ -19,6 +19,8 @@
 
 @synthesize queuedNotifications;
 
+@synthesize sites;
+
 @synthesize dockIcon;
 
 @synthesize statusItem;
@@ -343,6 +345,12 @@
 	[statusItem setHighlightMode:YES];
 	[statusItem setMenu:statusMenu];
 	[self openMainWindow];
+	NSUserDefaults *site = [NSUserDefaults standardUserDefaults];
+	
+	NSURL *url = [NSURL URLWithString:[site objectForKey:@"url"]];
+	NSString *accessKey = [site objectForKey:@"accessKey"];
+	NSString *secretKey = [site objectForKey:@"secretKey"];
+
 }
 
 - (void)deliverNotificationWithTitle:(NSString *)title message:(NSString *)message notificationInfo:(NSDictionary *)notificationInfo
@@ -358,6 +366,19 @@
 	
 	center.delegate = self;
 	[center scheduleNotification:userNotification];
+}
+
+- (NSError*)application:(NSApplication*)application
+	   willPresentError:(NSError*)error
+{
+	if (error)
+	{
+		NSDictionary* userInfo = [error userInfo];
+		NSLog (@"encountered the following error: %@", userInfo);
+//		Debugger();
+	}
+	
+	return error;
 }
 
 - (void) userNotificationCenter:(NSUserNotificationCenter *)center didActivateNotification:(NSUserNotification *)clickedNotification

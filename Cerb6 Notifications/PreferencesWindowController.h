@@ -8,8 +8,13 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface PreferencesWindowController : NSWindowController
+@interface PreferencesWindowController : NSWindowController {
+	IBOutlet NSPanel *siteSheet;
+}
 
 - (void)controlTextDidChange:(NSNotification *)notification;
+
+- (IBAction) closeSiteSheet:(id)sender;
+- (IBAction) showSiteSheet:(id)sender;
 
 @end

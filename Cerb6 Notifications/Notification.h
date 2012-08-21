@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
+#import "Site.h"
 
 
 @interface Notification : NSManagedObject
@@ -18,5 +19,7 @@
 @property (nonatomic, retain) NSNumber *notificationId;
 @property (nonatomic, retain) NSString *url;
 @property (nonatomic, retain) NSString *urlMarkRead;
+@property (nonatomic, retain) Site *site;
+//@property (nontatomic, retain) 
 
 @end

@@ -24,6 +24,8 @@
 
 @property NSMutableArray *queuedNotifications;
 
+@property NSMutableArray *sites;
+
 @property NSDockTile *dockIcon;
 
 @property NSStatusItem *statusItem;

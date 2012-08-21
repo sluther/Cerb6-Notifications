@@ -17,5 +17,6 @@
 @dynamic notificationId;
 @dynamic url;
 @dynamic urlMarkRead;
+@dynamic site;
 
 @end

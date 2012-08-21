@@ -14,6 +14,8 @@
 		1B01C2F015D259220082D68C /* PreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B01C2ED15D259220082D68C /* PreferencesWindowController.m */; };
 		1B01C2F115D259220082D68C /* PreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B01C2ED15D259220082D68C /* PreferencesWindowController.m */; };
 		1B0BD76215D9D099007DF000 /* Cerby.png in Resources */ = {isa = PBXBuildFile; fileRef = 1B0BD76115D9D099007DF000 /* Cerby.png */; };
+		1B2EBD8515E363AD004621B1 /* Cerb6_Notifications.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1B2EBD8315E363AD004621B1 /* Cerb6_Notifications.xcdatamodeld */; };
+		1B3038C615E2E1AB007C9A83 /* Site.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B3038C515E2E1AB007C9A83 /* Site.m */; };
 		1B78D44915D0A4FC00E3B71A /* Notification.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B78D44815D0A4FC00E3B71A /* Notification.m */; };
 		1B78D44D15D1081A00E3B71A /* NotificationsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B78D44C15D1081A00E3B71A /* NotificationsView.m */; };
 		1B84756815D39BD10055815C /* NotificationTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B84756715D39BD10055815C /* NotificationTableCell.m */; };
@@ -37,7 +39,6 @@
 		1B98AAE115CB6322004BE94F /* CJSONSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B98AACE15CB6322004BE94F /* CJSONSerializer.m */; };
 		1B9C40A915C922A900EF234A /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B9C40A615C922A900EF234A /* Utils.m */; };
 		1B9C40AA15C922A900EF234A /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B9C40A615C922A900EF234A /* Utils.m */; };
-		1BA553BD15CCF8D5002D0A39 /* Cerb6_Notifications.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1BA553BB15CCF8D5002D0A39 /* Cerb6_Notifications.xcdatamodeld */; };
 		1BDE6B8A15C678E800A3E311 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BDE6B8915C678E800A3E311 /* Cocoa.framework */; };
 		1BDE6B9415C678E800A3E311 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1BDE6B9215C678E800A3E311 /* InfoPlist.strings */; };
 		1BDE6B9615C678E800A3E311 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDE6B9515C678E800A3E311 /* main.m */; };
@@ -69,6 +70,10 @@
 		1B01C2EC15D259220082D68C /* PreferencesWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferencesWindowController.h; sourceTree = "<group>"; };
 		1B01C2ED15D259220082D68C /* PreferencesWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferencesWindowController.m; sourceTree = "<group>"; };
 		1B0BD76115D9D099007DF000 /* Cerby.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Cerby.png; sourceTree = "<group>"; };
+		1B2EBD8415E363AD004621B1 /* Cerb6_Notifications.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Cerb6_Notifications.xcdatamodel; sourceTree = "<group>"; };
+		1B2EBD8615E363C3004621B1 /* Cerb6_Notifications-0.9.0.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Cerb6_Notifications-0.9.0.xcdatamodel"; sourceTree = "<group>"; };
+		1B3038C415E2E1AB007C9A83 /* Site.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Site.h; sourceTree = "<group>"; };
+		1B3038C515E2E1AB007C9A83 /* Site.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Site.m; sourceTree = "<group>"; };
 		1B78D44715D0A4FC00E3B71A /* Notification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Notification.h; sourceTree = "<group>"; };
 		1B78D44815D0A4FC00E3B71A /* Notification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Notification.m; sourceTree = "<group>"; };
 		1B78D44B15D1081A00E3B71A /* NotificationsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationsView.h; sourceTree = "<group>"; };
@@ -96,7 +101,6 @@
 		1B98AACF15CB6322004BE94F /* JSONRepresentation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONRepresentation.h; sourceTree = "<group>"; };
 		1B9C40A515C922A900EF234A /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
 		1B9C40A615C922A900EF234A /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
-		1BA553BC15CCF8D5002D0A39 /* Cerb6_Notifications.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Cerb6_Notifications.xcdatamodel; sourceTree = "<group>"; };
 		1BDE6B8515C678E800A3E311 /* Cerb6 Notifications.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Cerb6 Notifications.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BDE6B8915C678E800A3E311 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		1BDE6B8C15C678E800A3E311 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -181,7 +185,7 @@
 		1BDE6B7A15C678E800A3E311 = {
 			isa = PBXGroup;
 			children = (
-				1BA553BB15CCF8D5002D0A39 /* Cerb6_Notifications.xcdatamodeld */,
+				1B2EBD8315E363AD004621B1 /* Cerb6_Notifications.xcdatamodeld */,
 				1BDE6B8F15C678E800A3E311 /* Cerb6 Notifications */,
 				1BDE6BAC15C678E800A3E311 /* Cerb6 NotificationsTests */,
 				1BDE6B8815C678E800A3E311 /* Frameworks */,
@@ -221,6 +225,8 @@
 		1BDE6B8F15C678E800A3E311 /* Cerb6 Notifications */ = {
 			isa = PBXGroup;
 			children = (
+				1B3038C415E2E1AB007C9A83 /* Site.h */,
+				1B3038C515E2E1AB007C9A83 /* Site.m */,
 				1B78D44715D0A4FC00E3B71A /* Notification.h */,
 				1B78D44815D0A4FC00E3B71A /* Notification.m */,
 				1B98AABA15CB6322004BE94F /* CDataScanner.h */,
@@ -406,12 +412,13 @@
 				1B98AADC15CB6322004BE94F /* CJSONDeserializer.m in Sources */,
 				1B98AADE15CB6322004BE94F /* CJSONScanner.m in Sources */,
 				1B98AAE015CB6322004BE94F /* CJSONSerializer.m in Sources */,
-				1BA553BD15CCF8D5002D0A39 /* Cerb6_Notifications.xcdatamodeld in Sources */,
 				1B78D44915D0A4FC00E3B71A /* Notification.m in Sources */,
 				1B78D44D15D1081A00E3B71A /* NotificationsView.m in Sources */,
 				1B01C2F015D259220082D68C /* PreferencesWindowController.m in Sources */,
 				1B84756815D39BD10055815C /* NotificationTableCell.m in Sources */,
 				1B01484415DB20740080C75C /* MainWindowController.m in Sources */,
+				1B3038C615E2E1AB007C9A83 /* Site.m in Sources */,
+				1B2EBD8515E363AD004621B1 /* Cerb6_Notifications.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -616,12 +623,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		1BA553BB15CCF8D5002D0A39 /* Cerb6_Notifications.xcdatamodeld */ = {
+		1B2EBD8315E363AD004621B1 /* Cerb6_Notifications.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				1BA553BC15CCF8D5002D0A39 /* Cerb6_Notifications.xcdatamodel */,
+				1B2EBD8615E363C3004621B1 /* Cerb6_Notifications-0.9.0.xcdatamodel */,
+				1B2EBD8415E363AD004621B1 /* Cerb6_Notifications.xcdatamodel */,
 			);
-			currentVersion = 1BA553BC15CCF8D5002D0A39 /* Cerb6_Notifications.xcdatamodel */;
+			currentVersion = 1B2EBD8615E363C3004621B1 /* Cerb6_Notifications-0.9.0.xcdatamodel */;
 			name = Cerb6_Notifications.xcdatamodeld;
 			path = "Cerb6 Notifications/Cerb6_Notifications.xcdatamodeld";
 			sourceTree = "<group>";
