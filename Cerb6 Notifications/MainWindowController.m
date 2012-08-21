@@ -72,9 +72,11 @@
 		[[cellView textField] setFont:[NSFont systemFontOfSize:12]];
 	}
 	
-	if([identifier isEqualTo:@"created"]) {
+	if([identifier isEqualToString:@"site"]) {
+		cellView.textField.stringValue = [[NSString alloc] initWithFormat:@"%@", notification.site];
+	} else if([identifier isEqualToString:@"created"]) {
 		cellView.textField.stringValue = [Utils prettySecs:notification.created];
-	} else if ([identifier isEqualTo:@"message"]) {
+	} else if ([identifier isEqualToString:@"message"]) {
 		cellView.textField.stringValue = notification.message;
 	}
 	

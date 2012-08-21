@@ -22,7 +22,6 @@
 @property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 
-@property NSMutableArray *userNotifications;
 @property NSMutableArray *queuedNotifications;
 
 @property NSDockTile *dockIcon;
@@ -31,8 +30,6 @@
 
 @property (weak) IBOutlet NSMenu *statusMenu;
 @property (weak) IBOutlet NSMenuItem *menuStatusItem;
-
-@property IBOutlet NSWindow *mainWindow;
 
 - (IBAction) clearNotifications:(id)sender;
 - (IBAction) deleteNotification:(id)sender;
