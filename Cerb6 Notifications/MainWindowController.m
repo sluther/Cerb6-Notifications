@@ -73,7 +73,8 @@
 	}
 	
 	if([identifier isEqualToString:@"site"]) {
-		cellView.textField.stringValue = [[NSString alloc] initWithFormat:@"%@", notification.site];
+		Site *site = notification.site;
+		cellView.textField.stringValue = [[NSString alloc] initWithFormat:@"%@", site.name];
 	} else if([identifier isEqualToString:@"created"]) {
 		cellView.textField.stringValue = [Utils prettySecs:notification.created];
 	} else if ([identifier isEqualToString:@"message"]) {

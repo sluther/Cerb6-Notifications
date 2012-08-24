@@ -129,7 +129,18 @@
 	
 	[self reloadTableFromStore];
 }
-
+- (void) reloadSitesFromStore
+{
+	NSManagedObjectContext *context = [self managedObjectContext];
+	NSEntityDescription *entity = [NSEntityDescription entityForName:@"Site" inManagedObjectContext:context];
+	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+	NSError *error = nil;
+	
+	[fetchRequest setEntity:entity];
+	
+	sites = [NSMutableArray arrayWithArray:[context executeFetchRequest:fetchRequest error:&error]];
+	
+}
 - (void) reloadTableFromStore
 {
 	NSManagedObjectContext *context = [self managedObjectContext];
@@ -161,97 +172,97 @@
 - (void) refreshNotifications
 {
 //	printf("Refreshing notifications...\n");
-	NSUserDefaults *site = [NSUserDefaults standardUserDefaults];
 	
-	NSURL *url = [NSURL URLWithString:[site objectForKey:@"url"]];
-	NSString *accessKey = [site objectForKey:@"accessKey"];
-	NSString *secretKey = [site objectForKey:@"secretKey"];
+	[self reloadSitesFromStore];
 	
-	if(url == nil || accessKey == nil || secretKey == nil) {
+	if([sites count] == 0) {
 		return;
-	}
-	
-	NSString *path = @"";
-	
-	if (![[[url path] substringFromIndex: [[url path] length] -1] isEqualToString:@"/"] ) {
-		path = @"/rest/notifications/list.json";
 	} else {
-		path = @"rest/notifications/list.json";
-	}
-	
-	NSString *query = @"unread=1";
-	
-	NSURL *fullUrl = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@?%@", url, path, query]];
-	
-	NSDictionary *request = [NSDictionary dictionaryWithObjectsAndKeys:fullUrl, @"url", accessKey, @"access_key", secretKey, @"secret_key", nil];
-	
-	NSError *error = nil;
-	NSString *response = [self request:request];
-	
-	NSData *jsonString = [response dataUsingEncoding:NSUTF8StringEncoding];
-	NSDictionary *jsonDict = [[CJSONDeserializer deserializer] deserializeAsDictionary:jsonString error:&error];
-	//	NSLog(@"%@", response);
-	
-	// Not needed?
-	//	NSString *resultCountString = (NSString *) [jsonDict objectForKey:@"count"];
-	//	int resultCount = [resultCountString intValue];
-	
-	NSDictionary *results = [jsonDict objectForKey:@"results"];
-	
-	NSManagedObjectContext *context = [self managedObjectContext];
-	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-	
-	NSEntityDescription *entity = [NSEntityDescription entityForName:@"Notification" inManagedObjectContext:context];
-	
-	[fetchRequest setEntity:entity];
-	
-	for (id key in results) {
-		NSDictionary *notificationDict = [results objectForKey:key];
-//		NSLog(@"%@", [results objectForKey:key]);
-		
-		NSNumber *notificationId = [[NSNumber alloc] initWithInteger:[[[NSString alloc] initWithString:[notificationDict objectForKey:@"id"]] integerValue]];
-		NSString *message = [notificationDict objectForKey:@"message"];
-		NSString *url = [notificationDict objectForKey:@"url"];
-		NSString *urlMarkRead = [notificationDict objectForKey:@"url_markread"];
-		NSNumber *isRead = [[NSNumber alloc] initWithBool:[[[NSString alloc] initWithString:[notificationDict objectForKey:@"is_read"]] integerValue]];
-		NSNumber *created = [[NSNumber alloc] initWithInteger:[[[NSString alloc] initWithString: [notificationDict objectForKey:@"created"]] integerValue]];
-		
-		NSPredicate *predicate = [NSPredicate predicateWithFormat:@"notificationId == %@", notificationId];
-		[fetchRequest setPredicate:predicate];
-		
-		NSError *error = nil;
-		NSArray *notificationResults = [context executeFetchRequest:fetchRequest error:&error];
-		
-//		NSLog(@"%@", notificationResults);
-		// Does the notification already exist? If so, update it.
-		if([notificationResults count] == 0) {
-			Notification *notification = [NSEntityDescription insertNewObjectForEntityForName:@"Notification" inManagedObjectContext:context];
+		for(int i = 0; i < [sites count]; i++) {
+			Site *site = [sites objectAtIndex:i];
 			
-			notification.notificationId = notificationId;
-			notification.message = message;
-			notification.url = url;
-			notification.urlMarkRead = urlMarkRead;
-			notification.isRead = isRead;
-			notification.created = created;
+			NSURL *url = [NSURL URLWithString:site.url];
+				
+			NSString *path = [NSString stringWithFormat:@"%@", [url path]];
 			
-			[queuedNotifications addObject:notification];
+			// Normalize path
+			if ([[url path] length] == 1) {
+				path =  [path stringByAppendingString:@"rest/notifications/list.json"];
+			} else {
+				path =  [path stringByAppendingString:@"/rest/notifications/list.json"];
+			}
 			
-//			NSLog(@"%@", notification);
-		} else {
-			// Only one notification per id, so grab the first one in the result set
-			Notification *notification = [notificationResults objectAtIndex:0];
+			NSString *query = @"unread=1";
 			
-			// Update the isRead bit
-			notification.isRead = isRead;
+			NSURL *fullUrl = [NSURL URLWithString:[NSString stringWithFormat:@"%@://%@%@?%@", [url scheme], [url host], path, query]];
+			
+			NSDictionary *request = [NSDictionary dictionaryWithObjectsAndKeys:fullUrl, @"url", site.accessKey, @"access_key", site.secretKey, @"secret_key", nil];
+			
+			NSError *error = nil;
+			NSString *response = [self request:request];
+			
+			NSData *jsonString = [response dataUsingEncoding:NSUTF8StringEncoding];
+			NSDictionary *jsonDict = [[CJSONDeserializer deserializer] deserializeAsDictionary:jsonString error:&error];
+			
+			// Not needed?
+			//	NSString *resultCountString = (NSString *) [jsonDict objectForKey:@"count"];
+			//	int resultCount = [resultCountString intValue];
+			
+			NSDictionary *results = [jsonDict objectForKey:@"results"];
+			
+			NSManagedObjectContext *context = [self managedObjectContext];
+			NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+			
+			NSEntityDescription *entity = [NSEntityDescription entityForName:@"Notification" inManagedObjectContext:context];
+			
+			[fetchRequest setEntity:entity];
+			
+			for (id key in results) {
+				NSDictionary *notificationDict = [results objectForKey:key];
+				
+				NSNumber *notificationId = [[NSNumber alloc] initWithInteger:[[[NSString alloc] initWithString:[notificationDict objectForKey:@"id"]] integerValue]];
+				NSString *message = [notificationDict objectForKey:@"message"];
+				NSString *url = [notificationDict objectForKey:@"url"];
+				NSString *urlMarkRead = [notificationDict objectForKey:@"url_markread"];
+				NSNumber *isRead = [[NSNumber alloc] initWithBool:[[[NSString alloc] initWithString:[notificationDict objectForKey:@"is_read"]] integerValue]];
+				NSNumber *created = [[NSNumber alloc] initWithInteger:[[[NSString alloc] initWithString: [notificationDict objectForKey:@"created"]] integerValue]];
+				
+				NSPredicate *predicate = [NSPredicate predicateWithFormat:@"notificationId == %@ AND site.name == %@", notificationId, site.name];
+				[fetchRequest setPredicate:predicate];
+				
+				NSError *error = nil;
+				NSArray *notificationResults = [context executeFetchRequest:fetchRequest error:&error];
+				
+				// Does the notification already exist? If so, update it.
+				if([notificationResults count] == 0) {
+					Notification *notification = [NSEntityDescription insertNewObjectForEntityForName:@"Notification" inManagedObjectContext:context];
+					
+					notification.notificationId = notificationId;
+					notification.message = message;
+					notification.url = url;
+					notification.urlMarkRead = urlMarkRead;
+					notification.isRead = isRead;
+					notification.created = created;
+					notification.site = site;
+					
+					[queuedNotifications addObject:notification];
+					
+				} else {
+					// Only one notification per id, so grab the first one in the result set
+					Notification *notification = [notificationResults objectAtIndex:0];
+					
+					// Update the isRead bit
+					notification.isRead = isRead;
+				}
+				
+				if(![context save:&error]) {
+					NSLog(@"%@", error);
+				}
+			}
 		}
-		
-		if(![context save:&error]) {
-			NSLog(@"%@", error);
-		}
+		[self reloadTableFromStore];
+		[self deliverQueuedNotifications];
 	}
-	
-	[self reloadTableFromStore];
-	[self deliverQueuedNotifications];
 }
 
 - (NSString *) request:(NSDictionary *)request
@@ -316,6 +327,45 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)notification
 {
+	NSManagedObjectContext *context = [self managedObjectContext];
+	NSError *error = nil;
+	
+	// Reload sites from persistent store
+	[self reloadSitesFromStore];
+	
+	// Pretend we're Jeff's install that still has User Prefs
+	NSUserDefaults *siteConfig = [NSUserDefaults standardUserDefaults];
+	[siteConfig setObject:@"http://tts.cerb5.com/admin/" forKey:@"url"];
+	[siteConfig setObject:@"t7s966wtl9de" forKey:@"accessKey"];
+	[siteConfig setObject:@"zdyz9e2alvsajazkpsh86kk7dx68djaq" forKey:@"secretKey"];
+	
+	// Migrate prefs to Core Data
+	// If there are sites in core data, we don't need to migrate
+	if([sites count] == 0) {
+		// Populate site from User Defaults
+		
+		NSString *url = [siteConfig objectForKey:@"url"];
+		NSString *accessKey = [siteConfig objectForKey:@"accessKey"];
+		NSString *secretKey = [siteConfig objectForKey:@"secretKey"];
+		
+		// Sanity check
+		if(url != nil && accessKey != nil && secretKey != nil) {
+			Site *site = [NSEntityDescription insertNewObjectForEntityForName:@"Site" inManagedObjectContext:context];
+			
+			site.url = url;
+			site.accessKey = accessKey;
+			site.secretKey = secretKey;
+			site.notifications = nil;
+			// Save the site to the persistent store
+			[context save:&error];
+			
+			// Wipe User Defaults
+			[siteConfig removeObjectForKey:@"url"];
+			[siteConfig removeObjectForKey:@"accessKey"];
+			[siteConfig removeObjectForKey:@"secretKey"];
+		}
+	}
+	
 	queuedNotifications = [[NSMutableArray alloc] init];
 	dockIcon = [[NSDockTile alloc] init];
 	mainWindowController = [[MainWindowController alloc] initWithWindowNibName:@"MainWindow"];
@@ -345,12 +395,6 @@
 	[statusItem setHighlightMode:YES];
 	[statusItem setMenu:statusMenu];
 	[self openMainWindow];
-	NSUserDefaults *site = [NSUserDefaults standardUserDefaults];
-	
-	NSURL *url = [NSURL URLWithString:[site objectForKey:@"url"]];
-	NSString *accessKey = [site objectForKey:@"accessKey"];
-	NSString *secretKey = [site objectForKey:@"secretKey"];
-
 }
 
 - (void)deliverNotificationWithTitle:(NSString *)title message:(NSString *)message notificationInfo:(NSDictionary *)notificationInfo

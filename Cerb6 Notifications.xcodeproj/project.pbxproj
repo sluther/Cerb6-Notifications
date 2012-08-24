@@ -71,7 +71,7 @@
 		1B01C2ED15D259220082D68C /* PreferencesWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferencesWindowController.m; sourceTree = "<group>"; };
 		1B0BD76115D9D099007DF000 /* Cerby.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Cerby.png; sourceTree = "<group>"; };
 		1B2EBD8415E363AD004621B1 /* Cerb6_Notifications.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Cerb6_Notifications.xcdatamodel; sourceTree = "<group>"; };
-		1B2EBD8615E363C3004621B1 /* Cerb6_Notifications-0.9.0.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Cerb6_Notifications-0.9.0.xcdatamodel"; sourceTree = "<group>"; };
+		1B2EBD8615E363C3004621B1 /* Cerb6_Notifications-0.9.0.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Cerb6_Notifications-0.9.0.xcdatamodel"; sourceTree = "<group>"; };
 		1B3038C415E2E1AB007C9A83 /* Site.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Site.h; sourceTree = "<group>"; };
 		1B3038C515E2E1AB007C9A83 /* Site.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Site.m; sourceTree = "<group>"; };
 		1B78D44715D0A4FC00E3B71A /* Notification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Notification.h; sourceTree = "<group>"; };

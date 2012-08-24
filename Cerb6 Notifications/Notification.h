@@ -20,6 +20,5 @@
 @property (nonatomic, retain) NSString *url;
 @property (nonatomic, retain) NSString *urlMarkRead;
 @property (nonatomic, retain) Site *site;
-//@property (nontatomic, retain) 
 
 @end

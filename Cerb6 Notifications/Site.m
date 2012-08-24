@@ -11,6 +11,7 @@
 @implementation Site
 
 @dynamic url;
+@synthesize name;
 @dynamic accessKey;
 @dynamic secretKey;
 @dynamic notifications;
