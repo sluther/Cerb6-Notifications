@@ -333,16 +333,11 @@
 	// Reload sites from persistent store
 	[self reloadSitesFromStore];
 	
-	// Pretend we're Jeff's install that still has User Prefs
-	NSUserDefaults *siteConfig = [NSUserDefaults standardUserDefaults];
-	[siteConfig setObject:@"http://tts.cerb5.com/admin/" forKey:@"url"];
-	[siteConfig setObject:@"t7s966wtl9de" forKey:@"accessKey"];
-	[siteConfig setObject:@"zdyz9e2alvsajazkpsh86kk7dx68djaq" forKey:@"secretKey"];
-	
 	// Migrate prefs to Core Data
 	// If there are sites in core data, we don't need to migrate
 	if([sites count] == 0) {
 		// Populate site from User Defaults
+		NSUserDefaults *siteConfig = [NSUserDefaults standardUserDefaults];
 		
 		NSString *url = [siteConfig objectForKey:@"url"];
 		NSString *accessKey = [siteConfig objectForKey:@"accessKey"];
