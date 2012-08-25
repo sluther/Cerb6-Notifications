@@ -163,8 +163,13 @@
 		}
 	}
 	
-	NSString *badgeLabel = [[NSString alloc] initWithFormat:@"%ld", unreadNotifications];
-	[[self dockIcon] setBadgeLabel:badgeLabel];
+	if(unreadNotifications > 0) {
+		NSString *badgeLabel = [[NSString alloc] initWithFormat:@"%ld", unreadNotifications];
+		[[self dockIcon] setBadgeLabel:badgeLabel];
+	} else {
+		[[self dockIcon] setBadgeLabel:nil];
+	}
+
 	mainWindowController.userNotifications = userNotifications;
 	[mainWindowController.notificationsTable reloadData];
 }
