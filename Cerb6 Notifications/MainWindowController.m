@@ -27,7 +27,7 @@
 
 - (id) initWithWindowNibName:(NSString *)windowNibName
 {
-	self = [super initWithWindowNibName:@"MainWindow"];
+	self = [super initWithWindowNibName:windowNibName];
     if (self) {
 		userNotifications = [[NSMutableArray alloc] init];
 		appDelegate = (AppDelegate *) [[NSApplication sharedApplication] delegate];

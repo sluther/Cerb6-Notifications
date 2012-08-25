@@ -10,8 +10,8 @@
 
 @implementation Site
 
+@dynamic name;
 @dynamic url;
-@synthesize name;
 @dynamic accessKey;
 @dynamic secretKey;
 @dynamic notifications;

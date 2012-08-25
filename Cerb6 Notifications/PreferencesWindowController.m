@@ -22,14 +22,13 @@
 }
 
 - (id)initWithWindow:(NSWindow *)window
+- (id) initWithWindowNibName:(NSString *)windowNibName
 {
-	// Implement NSPreferences & NSPreferencesModule
-    self = [super initWithWindow:window];
+	self = [super initWithWindowNibName:windowNibName];
     if (self) {
         // Initialization code here.
     }
-
-    return self;
+	return self;
 }
 
 - (void)windowDidLoad

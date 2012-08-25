@@ -10,8 +10,8 @@
 
 @interface Site : NSManagedObject
 
-@property (nonatomic, retain) NSString *url;
 @property (nonatomic, retain) NSString *name;
+@property (nonatomic, retain) NSString *url;
 @property (nonatomic, retain) NSString *accessKey;
 @property (nonatomic, retain) NSString *secretKey;
 @property (nonatomic, retain) NSSet *notifications;
