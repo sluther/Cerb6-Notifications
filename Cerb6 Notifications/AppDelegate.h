@@ -33,7 +33,8 @@
 @property (weak) IBOutlet NSMenu *statusMenu;
 @property (weak) IBOutlet NSMenuItem *menuStatusItem;
 
-- (IBAction) clearNotifications:(id)sender;
+- (IBAction) clearAllNotifications:(id)sender;
+- (IBAction) clearReadNotifications:(id)sender;
 - (IBAction) deleteNotification:(id)sender;
 - (IBAction) openNotification:(id)sender;
 - (IBAction) showPrefsWindow:(id)sender;

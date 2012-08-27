@@ -27,7 +27,7 @@
 @synthesize statusMenu;
 @synthesize menuStatusItem;
 
-- (IBAction) clearNotifications:(id)sender
+- (IBAction) clearAllNotifications:(id)sender
 {
 	mainWindowController.userNotifications = [[NSMutableArray alloc] init];
 
@@ -36,6 +36,29 @@
 
 	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
 	[fetchRequest setEntity:entity];
+	
+	NSError *error = nil;
+    NSArray *items = [context executeFetchRequest:fetchRequest error:&error];
+	
+    for (Notification *notification in items) {
+        [context deleteObject:notification];
+    }
+	
+	[self reloadTableFromStore];
+}
+
+- (IBAction) clearReadNotifications:(id)sender
+{
+	mainWindowController.userNotifications = [[NSMutableArray alloc] init];
+	
+	NSManagedObjectContext *context = [self managedObjectContext];
+	NSEntityDescription *entity = [NSEntityDescription entityForName:@"Notification" inManagedObjectContext:context];
+	
+	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+	[fetchRequest setEntity:entity];
+	
+	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"isRead == 1"];
+	[fetchRequest setPredicate:predicate];
 	
 	NSError *error = nil;
     NSArray *items = [context executeFetchRequest:fetchRequest error:&error];
@@ -219,7 +242,6 @@
 			NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
 			
 			NSEntityDescription *entity = [NSEntityDescription entityForName:@"Notification" inManagedObjectContext:context];
-			
 			[fetchRequest setEntity:entity];
 			
 			for (id key in results) {
