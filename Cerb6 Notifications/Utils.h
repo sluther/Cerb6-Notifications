@@ -12,5 +12,5 @@
 }
 
 +(NSString *)md5FromString:(NSString *)source;
-+(NSString *)prettySecs:(NSNumber *)timestamp;
+
 @end

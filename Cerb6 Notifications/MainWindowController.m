@@ -12,26 +12,48 @@
 
 @implementation MainWindowController
 
-@synthesize userNotifications;
+//@synthesize userNotifications;
 
 @synthesize notificationsTable;
+@synthesize notificationsController;
 
 - (void) doubleClick:(id)sender
 {
 	NSInteger row = [notificationsTable clickedRow];
 	
-	Notification *clickedNotification = [userNotifications objectAtIndex:row];
+//	Notification *clickedNotification = [userNotifications objectAtIndex:row];
+//	Notification *clickedNotification = 
 	
-	[appDelegate redirectToBrowser:clickedNotification];
+//	[appDelegate redirectToBrowser:clickedNotification];
 }
 
 - (id) initWithWindowNibName:(NSString *)windowNibName
 {
 	self = [super initWithWindowNibName:windowNibName];
-    if (self) {
-		userNotifications = [[NSMutableArray alloc] init];
+	if (self) {
+//		[notificationsController setManagedObjectContext:[appDelegate managedObjectContext]];
+//		[notificationsController setEntityName:@"Notification"];
+//		[notificationsController setAutomaticallyPreparesContent:YES];
+//		
+//		[notificationsController fetchWithRequest:fetchRequest merge:NO error:&error];
+//
+//
 		appDelegate = (AppDelegate *) [[NSApplication sharedApplication] delegate];
-    }
+		
+		NSSortDescriptor *createdSortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"created" ascending:NO];
+		[notificationsController setSortDescriptors:[NSArray arrayWithObject:createdSortDescriptor]];
+//		NSLog(@"%@", appDelegate);
+
+//		NSManagedObjectContext *context = [appDelegate managedObjectContext];
+//		NSEntityDescription *entity = [NSEntityDescription entityForName:@"Notification" inManagedObjectContext:context];
+//		NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+//		NSError *error = nil;
+//		
+//		[fetchRequest setEntity:entity];
+//		NSMutableArray *userNotifications = [NSMutableArray arrayWithArray:[context executeFetchRequest:fetchRequest error:&error]];
+		
+//		[notificationsTable reloadData];
+	}
 	return self;
 }
 
@@ -48,40 +70,6 @@
 {
 	[notificationsTable setTarget:self];
 	[notificationsTable setDoubleAction:@selector(doubleClick:)];
-}
-
-- (NSInteger) numberOfRowsInTableView:(NSTableView *)tableView
-{
-	return [userNotifications count];
-}
-
-- (NSView *) tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
-	
-	if(userNotifications == nil) {
-		return nil;
-	}
-	
-	// Grab the column identifier
-	NSString *identifier = tableColumn.identifier;
-	NSTableCellView *cellView = [tableView makeViewWithIdentifier:identifier owner:self];
-	
-	Notification *notification = [userNotifications objectAtIndex:row];
-	if([notification.isRead boolValue] == NO) {
-		[[cellView textField] setFont:[NSFont boldSystemFontOfSize:12]];
-	} else {
-		[[cellView textField] setFont:[NSFont systemFontOfSize:12]];
-	}
-	
-	if([identifier isEqualToString:@"site"]) {
-		Site *site = notification.site;
-		cellView.textField.stringValue = [[NSString alloc] initWithFormat:@"%@", site.name];
-	} else if([identifier isEqualToString:@"created"]) {
-		cellView.textField.stringValue = [Utils prettySecs:notification.created];
-	} else if ([identifier isEqualToString:@"message"]) {
-		cellView.textField.stringValue = notification.message;
-	}
-	
-	return cellView;
 }
 
 @end

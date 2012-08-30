@@ -17,8 +17,6 @@
 		1B2EBD8515E363AD004621B1 /* Cerb6_Notifications.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1B2EBD8315E363AD004621B1 /* Cerb6_Notifications.xcdatamodeld */; };
 		1B3038C615E2E1AB007C9A83 /* Site.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B3038C515E2E1AB007C9A83 /* Site.m */; };
 		1B78D44915D0A4FC00E3B71A /* Notification.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B78D44815D0A4FC00E3B71A /* Notification.m */; };
-		1B78D44D15D1081A00E3B71A /* NotificationsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B78D44C15D1081A00E3B71A /* NotificationsView.m */; };
-		1B84756815D39BD10055815C /* NotificationTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B84756715D39BD10055815C /* NotificationTableCell.m */; };
 		1B98AAD015CB6322004BE94F /* CDataScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B98AABB15CB6322004BE94F /* CDataScanner.m */; };
 		1B98AAD115CB6322004BE94F /* CDataScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B98AABB15CB6322004BE94F /* CDataScanner.m */; };
 		1B98AAD215CB6322004BE94F /* CFilteringJSONSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B98AABE15CB6322004BE94F /* CFilteringJSONSerializer.m */; };
@@ -50,6 +48,7 @@
 		1BDE6BB115C678E800A3E311 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1BDE6BAF15C678E800A3E311 /* InfoPlist.strings */; };
 		1BDE6BB415C678E800A3E311 /* Cerb6_NotificationsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BDE6BB315C678E800A3E311 /* Cerb6_NotificationsTests.m */; };
 		1BE0DEA815D98DF1007D1C5E /* Cerb.icns in Resources */ = {isa = PBXBuildFile; fileRef = 1BE0DEA715D98DF1007D1C5E /* Cerb.icns */; };
+		1BE2BC6A15EEC19F0030FE0B /* RelativeDateTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BE2BC6915EEC19F0030FE0B /* RelativeDateTransformer.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,10 +75,6 @@
 		1B3038C515E2E1AB007C9A83 /* Site.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Site.m; sourceTree = "<group>"; };
 		1B78D44715D0A4FC00E3B71A /* Notification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Notification.h; sourceTree = "<group>"; };
 		1B78D44815D0A4FC00E3B71A /* Notification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Notification.m; sourceTree = "<group>"; };
-		1B78D44B15D1081A00E3B71A /* NotificationsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationsView.h; sourceTree = "<group>"; };
-		1B78D44C15D1081A00E3B71A /* NotificationsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationsView.m; sourceTree = "<group>"; };
-		1B84756615D39BD10055815C /* NotificationTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationTableCell.h; sourceTree = "<group>"; };
-		1B84756715D39BD10055815C /* NotificationTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationTableCell.m; sourceTree = "<group>"; };
 		1B98AABA15CB6322004BE94F /* CDataScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDataScanner.h; sourceTree = "<group>"; };
 		1B98AABB15CB6322004BE94F /* CDataScanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDataScanner.m; sourceTree = "<group>"; };
 		1B98AABD15CB6322004BE94F /* CFilteringJSONSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFilteringJSONSerializer.h; sourceTree = "<group>"; };
@@ -121,6 +116,8 @@
 		1BDE6BB215C678E800A3E311 /* Cerb6_NotificationsTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Cerb6_NotificationsTests.h; sourceTree = "<group>"; };
 		1BDE6BB315C678E800A3E311 /* Cerb6_NotificationsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Cerb6_NotificationsTests.m; sourceTree = "<group>"; };
 		1BE0DEA715D98DF1007D1C5E /* Cerb.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Cerb.icns; sourceTree = "<group>"; };
+		1BE2BC6815EEC19F0030FE0B /* RelativeDateTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RelativeDateTransformer.h; sourceTree = "<group>"; };
+		1BE2BC6915EEC19F0030FE0B /* RelativeDateTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RelativeDateTransformer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -242,14 +239,12 @@
 				1B01484215DB20740080C75C /* MainWindowController.h */,
 				1B01484315DB20740080C75C /* MainWindowController.m */,
 				1B01484815DB2DEB0080C75C /* MainWindow.xib */,
-				1B78D44B15D1081A00E3B71A /* NotificationsView.h */,
-				1B78D44C15D1081A00E3B71A /* NotificationsView.m */,
 				1B01C2EC15D259220082D68C /* PreferencesWindowController.h */,
 				1B01C2ED15D259220082D68C /* PreferencesWindowController.m */,
 				1B01C2EB15D259220082D68C /* PreferencesWindow.xib */,
+				1BE2BC6815EEC19F0030FE0B /* RelativeDateTransformer.h */,
+				1BE2BC6915EEC19F0030FE0B /* RelativeDateTransformer.m */,
 				1BDE6B9015C678E800A3E311 /* Supporting Files */,
-				1B84756615D39BD10055815C /* NotificationTableCell.h */,
-				1B84756715D39BD10055815C /* NotificationTableCell.m */,
 			);
 			path = "Cerb6 Notifications";
 			sourceTree = "<group>";
@@ -413,12 +408,11 @@
 				1B98AADE15CB6322004BE94F /* CJSONScanner.m in Sources */,
 				1B98AAE015CB6322004BE94F /* CJSONSerializer.m in Sources */,
 				1B78D44915D0A4FC00E3B71A /* Notification.m in Sources */,
-				1B78D44D15D1081A00E3B71A /* NotificationsView.m in Sources */,
 				1B01C2F015D259220082D68C /* PreferencesWindowController.m in Sources */,
-				1B84756815D39BD10055815C /* NotificationTableCell.m in Sources */,
 				1B01484415DB20740080C75C /* MainWindowController.m in Sources */,
 				1B3038C615E2E1AB007C9A83 /* Site.m in Sources */,
 				1B2EBD8515E363AD004621B1 /* Cerb6_Notifications.xcdatamodeld in Sources */,
+				1BE2BC6A15EEC19F0030FE0B /* RelativeDateTransformer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -29,7 +29,7 @@
 
 - (IBAction) clearAllNotifications:(id)sender
 {
-	mainWindowController.userNotifications = [[NSMutableArray alloc] init];
+//	mainWindowController.userNotifications = [[NSMutableArray alloc] init];
 
 	NSManagedObjectContext *context = [self managedObjectContext];
 	NSEntityDescription *entity = [NSEntityDescription entityForName:@"Notification" inManagedObjectContext:context];
@@ -49,7 +49,7 @@
 
 - (IBAction) clearReadNotifications:(id)sender
 {
-	mainWindowController.userNotifications = [[NSMutableArray alloc] init];
+//	mainWindowController.userNotifications = [[NSMutableArray alloc] init];
 	
 	NSManagedObjectContext *context = [self managedObjectContext];
 	NSEntityDescription *entity = [NSEntityDescription entityForName:@"Notification" inManagedObjectContext:context];
@@ -77,10 +77,10 @@
 		return;
 	}
 	
-	Notification *notification = [mainWindowController.userNotifications objectAtIndex:[mainWindowController.notificationsTable selectedRow]];
+//	Notification *notification = [mainWindowController.userNotifications objectAtIndex:[mainWindowController.notificationsTable selectedRow]];
 	
 	NSManagedObjectContext *context = [self managedObjectContext];
-	[context deleteObject:notification];
+//	[context deleteObject:notification];
 	[self reloadTableFromStore];
 }
 
@@ -91,9 +91,9 @@
 		return;
 	}
 	
-	Notification *selectedNotification = [mainWindowController.userNotifications objectAtIndex:[mainWindowController.notificationsTable selectedRow]];
+//	Notification *selectedNotification = [mainWindowController.userNotifications objectAtIndex:[mainWindowController.notificationsTable selectedRow]];
 	
-	[self redirectToBrowser:selectedNotification];
+//	[self redirectToBrowser:selectedNotification];
 }
 
 - (IBAction) refresh:(id)sender
@@ -120,11 +120,11 @@
 			
 			Notification *queuedNotification = [queuedNotifications objectAtIndex:i];
 			
-			NSInteger loc = [mainWindowController.userNotifications indexOfObject:queuedNotification];
+//			NSInteger loc = [mainWindowController.userNotifications indexOfObject:queuedNotification];
 			
-			NSNumber *location = [NSNumber numberWithInteger:loc];
-			NSDictionary *notificationInfo = [[NSDictionary alloc] initWithObjectsAndKeys:location, @"loc", nil];
-			[self deliverNotificationWithTitle:@"Cerb6 Notification" message:queuedNotification.message notificationInfo:notificationInfo];
+//			NSNumber *location = [NSNumber numberWithInteger:loc];
+//			NSDictionary *notificationInfo = [[NSDictionary alloc] initWithObjectsAndKeys:location, @"loc", nil];
+//			[self deliverNotificationWithTitle:@"Cerb6 Notification" message:queuedNotification.message notificationInfo:notificationInfo];
 		}
 		
 		[queuedNotifications removeAllObjects];
@@ -176,10 +176,10 @@
 	NSMutableArray *userNotifications = [NSMutableArray arrayWithArray:[context executeFetchRequest:fetchRequest error:&error]];
 	
 	NSInteger unreadNotifications = 0;
-	NSInteger totalnotifications = [userNotifications count];
+	NSInteger totalNotifications = [userNotifications count];
 	
 	// Count unread notifications for dock icon/status menu item
-	for(NSInteger i = 0; i < totalnotifications; i++) {
+	for(NSInteger i = 0; i < totalNotifications; i++) {
 		Notification *notification = [userNotifications objectAtIndex:i];
 		if([notification.isRead boolValue] == NO) {
 			unreadNotifications++;

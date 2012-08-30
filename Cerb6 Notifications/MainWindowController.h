@@ -18,5 +18,6 @@
 @property NSMutableArray *userNotifications;
 
 @property (weak) IBOutlet NSTableView *notificationsTable;
+@property (weak) IBOutlet NSArrayController *notificationsController;
 
 @end
