@@ -512,6 +512,23 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
+						<string key="label">selectionIndexes: selectionIndexes</string>
+						<reference key="source" ref="545939006"/>
+						<reference key="destination" ref="368902099"/>
+						<object class="NSNibBindingConnector" key="connector" id="409598040">
+							<reference key="NSSource" ref="545939006"/>
+							<reference key="NSDestination" ref="368902099"/>
+							<string key="NSLabel">selectionIndexes: selectionIndexes</string>
+							<string key="NSBinding">selectionIndexes</string>
+							<string key="NSKeyPath">selectionIndexes</string>
+							<reference key="NSPreviousConnector" ref="740429656"/>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">134</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
 						<string key="label">sortDescriptors: values.sortDescriptors</string>
 						<reference key="source" ref="545939006"/>
 						<reference key="destination" ref="184958621"/>
@@ -525,11 +542,11 @@
 								<boolean value="YES" key="NSValidatesImmediately"/>
 								<string key="NSValueTransformerName">NSUnarchiveFromData</string>
 							</dictionary>
-							<reference key="NSPreviousConnector" ref="740429656"/>
+							<reference key="NSPreviousConnector" ref="409598040"/>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">127</int>
+					<int key="connectionID">135</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
@@ -1326,7 +1343,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">127</int>
+			<int key="maxID">135</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">

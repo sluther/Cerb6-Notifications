@@ -12,8 +12,6 @@
 
 @implementation MainWindowController
 
-//@synthesize userNotifications;
-
 @synthesize notificationsTable;
 @synthesize notificationsController;
 
@@ -40,8 +38,8 @@
 //
 		appDelegate = (AppDelegate *) [[NSApplication sharedApplication] delegate];
 		
-		NSSortDescriptor *createdSortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"created" ascending:NO];
-		[notificationsController setSortDescriptors:[NSArray arrayWithObject:createdSortDescriptor]];
+//		NSSortDescriptor *createdSortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"created" ascending:NO];
+//		[notificationsController setSortDescriptors:[NSArray arrayWithObject:createdSortDescriptor]];
 //		NSLog(@"%@", appDelegate);
 
 //		NSManagedObjectContext *context = [appDelegate managedObjectContext];

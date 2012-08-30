@@ -29,8 +29,6 @@
 
 - (IBAction) clearAllNotifications:(id)sender
 {
-//	mainWindowController.userNotifications = [[NSMutableArray alloc] init];
-
 	NSManagedObjectContext *context = [self managedObjectContext];
 	NSEntityDescription *entity = [NSEntityDescription entityForName:@"Notification" inManagedObjectContext:context];
 
@@ -49,8 +47,6 @@
 
 - (IBAction) clearReadNotifications:(id)sender
 {
-//	mainWindowController.userNotifications = [[NSMutableArray alloc] init];
-	
 	NSManagedObjectContext *context = [self managedObjectContext];
 	NSEntityDescription *entity = [NSEntityDescription entityForName:@"Notification" inManagedObjectContext:context];
 	
@@ -72,28 +68,27 @@
 
 - (IBAction) deleteNotification:(id)sender
 {
-	NSInteger selectedRow = [mainWindowController.notificationsTable selectedRow];
-	if(selectedRow == -1) {
-		return;
-	}
-	
-//	Notification *notification = [mainWindowController.userNotifications objectAtIndex:[mainWindowController.notificationsTable selectedRow]];
-	
 	NSManagedObjectContext *context = [self managedObjectContext];
-//	[context deleteObject:notification];
+	
+	NSArray *selectedNotifications = [mainWindowController.notificationsController selectedObjects];
+	Notification *notification = [selectedNotifications objectAtIndex:0];
+	[context deleteObject:notification];
+	
+	// Multiple deletes
+//	NSInteger totalSelected = [selectedNotifications count];
+//	for(int i=0; i < totalSelected; i++) {
+//		Notification *notification = [selectedNotifications objectAtIndex:i];
+//		[context deleteObject:notification];
+//	}
 	[self reloadTableFromStore];
 }
 
 - (IBAction) openNotification:(id)sender
 {
-	NSInteger selectedRow = [mainWindowController.notificationsTable selectedRow];
-	if(selectedRow == -1) {
-		return;
-	}
+	NSArray *selectedNotifications = [mainWindowController.notificationsController selectedObjects];
+	Notification *notification = [selectedNotifications objectAtIndex:0];
 	
-//	Notification *selectedNotification = [mainWindowController.userNotifications objectAtIndex:[mainWindowController.notificationsTable selectedRow]];
-	
-//	[self redirectToBrowser:selectedNotification];
+	[self redirectToBrowser:notification];
 }
 
 - (IBAction) refresh:(id)sender
@@ -193,7 +188,6 @@
 		[[self dockIcon] setBadgeLabel:nil];
 	}
 
-	mainWindowController.userNotifications = userNotifications;
 	[mainWindowController.notificationsTable reloadData];
 }
 
