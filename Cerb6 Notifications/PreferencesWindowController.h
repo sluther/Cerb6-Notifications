@@ -27,5 +27,5 @@
 
 - (IBAction) closeSiteSheet:(id)sender;
 - (IBAction) showSiteSheet:(id)sender;
-
+- (IBAction) saveSite:(id)sender;
 @end

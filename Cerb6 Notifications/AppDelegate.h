@@ -42,6 +42,7 @@
 
 //- (void) refreshNotifications;
 - (void) reloadTableFromStore;
+- (void) reloadSitesFromStore;
 - (void) redirectToBrowser:(Notification *)clickedNotification;
 
 @end

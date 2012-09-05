@@ -8,6 +8,7 @@
 
 #import "PreferencesWindowController.h"
 #import "AppDelegate.h"
+#import "Site.h"
 
 @implementation PreferencesWindowController
 
@@ -25,8 +26,34 @@
 
 - (IBAction) saveSite:(id)sender
 {
+	NSManagedObjectContext *context = [appDelegate managedObjectContext];
+	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
 	
+	NSEntityDescription *entity = [NSEntityDescription entityForName:@"Site" inManagedObjectContext:context];
+	[fetchRequest setEntity:entity];
+	
+	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"url == %@", url];
+	[fetchRequest setPredicate:predicate];
+	
+	NSError *error = nil;
+	NSArray *siteResults = [context executeFetchRequest:fetchRequest error:&error];
+	
+	// Does the notification already exist? If so, update it.
+	if([siteResults count] == 0) {
+		Site *site = [NSEntityDescription insertNewObjectForEntityForName:@"Site" inManagedObjectContext:context];
+		
+		site.url = [url stringValue];
+		site.name = [name stringValue];
+		site.accessKey = [accessKey stringValue];
+		site.secretKey = [secretKey stringValue];
+		
+		if(![context save:&error]) {
+			NSLog(@"%@", error);
+		}
+	}
 	[self closeSheet];
+	[appDelegate reloadSitesFromStore];
+	[sitesTable reloadData];
 }
 
 - (IBAction) showSiteSheet:(id)sender

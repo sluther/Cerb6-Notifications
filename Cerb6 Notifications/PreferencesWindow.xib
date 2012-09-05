@@ -2,7 +2,7 @@
 <archive type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="8.00">
 	<data>
 		<int key="IBDocument.SystemTarget">1080</int>
-		<string key="IBDocument.SystemVersion">12A269</string>
+		<string key="IBDocument.SystemVersion">12B19</string>
 		<string key="IBDocument.InterfaceBuilderVersion">2549</string>
 		<string key="IBDocument.AppKitVersion">1187</string>
 		<string key="IBDocument.HIToolboxVersion">624.00</string>
@@ -273,6 +273,7 @@
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{280, 13}, {96, 32}}</string>
 							<reference key="NSSuperview" ref="100415718"/>
+							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<bool key="NSEnabled">YES</bool>
@@ -297,6 +298,7 @@
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{14, 13}, {82, 32}}</string>
 							<reference key="NSSuperview" ref="100415718"/>
+							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="67925292"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<bool key="NSEnabled">YES</bool>
@@ -321,6 +323,7 @@
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{98, 148}, {272, 22}}</string>
 							<reference key="NSSuperview" ref="100415718"/>
+							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="795016128"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<bool key="NSEnabled">YES</bool>
@@ -352,6 +355,7 @@
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{98, 116}, {272, 22}}</string>
 							<reference key="NSSuperview" ref="100415718"/>
+							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="182827819"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<bool key="NSEnabled">YES</bool>
@@ -373,6 +377,7 @@
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{98, 84}, {272, 22}}</string>
 							<reference key="NSSuperview" ref="100415718"/>
+							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="1055213514"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<bool key="NSEnabled">YES</bool>
@@ -394,6 +399,7 @@
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{98, 54}, {272, 22}}</string>
 							<reference key="NSSuperview" ref="100415718"/>
+							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="361727040"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<bool key="NSEnabled">YES</bool>
@@ -415,6 +421,7 @@
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{52, 151}, {41, 17}}</string>
 							<reference key="NSSuperview" ref="100415718"/>
+							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="260093225"/>
 							<string key="NSReuseIdentifierKey">_NS:1535</string>
 							<bool key="NSEnabled">YES</bool>
@@ -440,6 +447,7 @@
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{64, 119}, {29, 17}}</string>
 							<reference key="NSSuperview" ref="100415718"/>
+							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="34425924"/>
 							<string key="NSReuseIdentifierKey">_NS:1535</string>
 							<bool key="NSEnabled">YES</bool>
@@ -460,6 +468,7 @@
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{19, 84}, {74, 17}}</string>
 							<reference key="NSSuperview" ref="100415718"/>
+							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="594695967"/>
 							<string key="NSReuseIdentifierKey">_NS:1535</string>
 							<bool key="NSEnabled">YES</bool>
@@ -480,6 +489,7 @@
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{24, 57}, {69, 17}}</string>
 							<reference key="NSSuperview" ref="100415718"/>
+							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="846715797"/>
 							<string key="NSReuseIdentifierKey">_NS:1535</string>
 							<bool key="NSEnabled">YES</bool>
@@ -498,6 +508,7 @@
 					</array>
 					<string key="NSFrameSize">{390, 190}</string>
 					<reference key="NSSuperview"/>
+					<reference key="NSWindow"/>
 					<reference key="NSNextKeyView" ref="249630489"/>
 					<string key="NSReuseIdentifierKey">_NS:21</string>
 				</object>
@@ -528,49 +539,9 @@
 					<object class="IBActionConnection" key="connection">
 						<string key="label">closeSiteSheet:</string>
 						<reference key="source" ref="1001"/>
-						<reference key="destination" ref="67925292"/>
-					</object>
-					<int key="connectionID">228</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">closeSiteSheet:</string>
-						<reference key="source" ref="1001"/>
 						<reference key="destination" ref="361727040"/>
 					</object>
 					<int key="connectionID">244</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">secretKey</string>
-						<reference key="source" ref="1001"/>
-						<reference key="destination" ref="846715797"/>
-					</object>
-					<int key="connectionID">324</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">accessKey</string>
-						<reference key="source" ref="1001"/>
-						<reference key="destination" ref="594695967"/>
-					</object>
-					<int key="connectionID">325</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">url</string>
-						<reference key="source" ref="1001"/>
-						<reference key="destination" ref="34425924"/>
-					</object>
-					<int key="connectionID">326</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">name</string>
-						<reference key="source" ref="1001"/>
-						<reference key="destination" ref="260093225"/>
-					</object>
-					<int key="connectionID">327</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
@@ -587,6 +558,46 @@
 						<reference key="destination" ref="526388672"/>
 					</object>
 					<int key="connectionID">460</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">name</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="260093225"/>
+					</object>
+					<int key="connectionID">461</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">url</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="594695967"/>
+					</object>
+					<int key="connectionID">463</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">accessKey</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="594695967"/>
+					</object>
+					<int key="connectionID">464</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">secretKey</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="846715797"/>
+					</object>
+					<int key="connectionID">465</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">saveSite:</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="67925292"/>
+					</object>
+					<int key="connectionID">467</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
@@ -1745,7 +1756,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">460</int>
+			<int key="maxID">467</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1762,11 +1773,16 @@
 					<string key="superclassName">NSWindowController</string>
 					<dictionary class="NSMutableDictionary" key="actions">
 						<string key="closeSiteSheet:">id</string>
+						<string key="saveSite:">id</string>
 						<string key="showSiteSheet:">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
 						<object class="IBActionInfo" key="closeSiteSheet:">
 							<string key="name">closeSiteSheet:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="saveSite:">
+							<string key="name">saveSite:</string>
 							<string key="candidateClassName">id</string>
 						</object>
 						<object class="IBActionInfo" key="showSiteSheet:">
