@@ -11,7 +11,7 @@
 
 @class AppDelegate;
 
-@interface MainWindowController : NSWindowController <NSTableViewDataSource, NSTableViewDelegate> {
+@interface MainWindowController : NSWindowController  {
 	AppDelegate <NSApplicationDelegate> *appDelegate;
 }
 

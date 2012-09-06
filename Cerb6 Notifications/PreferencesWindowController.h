@@ -7,11 +7,10 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "Site.h"
 
 @class AppDelegate;
 
-@interface PreferencesWindowController : NSWindowController <NSTableViewDataSource, NSTableViewDelegate> {
+@interface PreferencesWindowController : NSWindowController {
 	AppDelegate <NSApplicationDelegate> *appDelegate;
 	IBOutlet NSPanel *siteSheet;
 }
@@ -19,6 +18,7 @@
 //- (void)controlTextDidChange:(NSNotification *)notification;
 
 @property IBOutlet NSTableView *sitesTable;
+@property (weak) IBOutlet NSArrayController *sitesController;
 
 @property IBOutlet NSTextField *name;
 @property IBOutlet NSTextField *url;
@@ -26,6 +26,8 @@
 @property IBOutlet NSTextField *secretKey;
 
 - (IBAction) closeSiteSheet:(id)sender;
-- (IBAction) showSiteSheet:(id)sender;
+- (IBAction) addSite:(id)sender;
 - (IBAction) saveSite:(id)sender;
+- (IBAction) editSite:(id)sender;
+- (IBAction) deleteSite:(id)sender;
 @end

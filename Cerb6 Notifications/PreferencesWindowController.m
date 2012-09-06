@@ -13,6 +13,7 @@
 @implementation PreferencesWindowController
 
 @synthesize sitesTable;
+@synthesize sitesController;
 
 @synthesize name;
 @synthesize url;
@@ -24,6 +25,44 @@
 	[self closeSheet];
 }
 
+- (IBAction) addSite:(id)sender
+{
+	name.stringValue = @"";
+	url.stringValue = @"";
+	accessKey.stringValue = @"";
+	secretKey.stringValue = @"";
+	
+	[self showSiteSheet:self];
+}
+
+- (IBAction) editSite:(id)sender
+{
+	NSArray *selectedSites = [sitesController selectedObjects];
+	
+	if([selectedSites count] > 0) {
+		Site *site = [selectedSites objectAtIndex:0];
+		
+		name.stringValue = site.name;
+		url.stringValue = site.url;
+		accessKey.stringValue = site.accessKey;
+		secretKey.stringValue = site.secretKey;
+		
+		[self showSiteSheet:self];
+	}
+}
+
+- (IBAction) deleteSite:(id)sender
+{
+	NSManagedObjectContext *context = [appDelegate managedObjectContext];
+	
+	NSArray *selectedSites = [sitesController selectedObjects];
+	Site *site = [selectedSites objectAtIndex:0];
+	[context deleteObject:site];
+	
+	[sitesTable reloadData];
+	[appDelegate reloadSitesFromStore];
+}
+
 - (IBAction) saveSite:(id)sender
 {
 	NSManagedObjectContext *context = [appDelegate managedObjectContext];
@@ -32,7 +71,7 @@
 	NSEntityDescription *entity = [NSEntityDescription entityForName:@"Site" inManagedObjectContext:context];
 	[fetchRequest setEntity:entity];
 	
-	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"url == %@", url];
+	NSPredicate *predicate = [NSPredicate predicateWithFormat:@"url == %@", url.stringValue];
 	[fetchRequest setPredicate:predicate];
 	
 	NSError *error = nil;
@@ -46,17 +85,23 @@
 		site.name = [name stringValue];
 		site.accessKey = [accessKey stringValue];
 		site.secretKey = [secretKey stringValue];
+	} else {
+		Site *site = [siteResults objectAtIndex:0];
 		
-		if(![context save:&error]) {
-			NSLog(@"%@", error);
-		}
+		site.url = [url stringValue];
+		site.name = [name stringValue];
+		site.accessKey = [accessKey stringValue];
+		site.secretKey = [secretKey stringValue];
+	}
+	
+	if(![context save:&error]) {
+		NSLog(@"%@", error);
 	}
 	[self closeSheet];
-	[appDelegate reloadSitesFromStore];
 	[sitesTable reloadData];
 }
 
-- (IBAction) showSiteSheet:(id)sender
+- (void) showSiteSheet:(id)sender
 {
 	[NSApp beginSheet:siteSheet modalForWindow:[self window] modalDelegate:self didEndSelector:nil contextInfo:nil];
 }
@@ -89,6 +134,8 @@
     [super windowDidLoad];
 
     // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
+	NSSortDescriptor *sortSites = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:NO];
+	[sitesController setSortDescriptors:[NSArray arrayWithObject:sortSites]];
 	[sitesTable reloadData];
 }
 
@@ -101,37 +148,6 @@
 {
 	[sitesTable setTarget:self];
 	[sitesTable setDoubleAction:@selector(doubleClick:)];
-}
-
-- (NSInteger) numberOfRowsInTableView:(NSTableView *)tableView
-{
-	NSLog(@"%@", [appDelegate sites]);
-	return [[appDelegate sites] count];
-}
-
-- (NSView *) tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
-	
-	if([appDelegate sites] == nil) {
-		return nil;
-	}
-	
-	// Grab the column identifier
-	NSString *identifier = tableColumn.identifier;
-	NSTableCellView *cellView = [tableView makeViewWithIdentifier:identifier owner:self];
-	
-	Site *site = [[appDelegate sites] objectAtIndex:row];
-	
-	cellView.textField.stringValue = site.name;
-//	if([identifier isEqualToString:@"site"]) {
-//		Site *site = notification.site;
-//		cellView.textField.stringValue = [[NSString alloc] initWithFormat:@"%@", site.name];
-//	} else if([identifier isEqualToString:@"created"]) {
-//		cellView.textField.stringValue = [Utils prettySecs:notification.created];
-//	} else if ([identifier isEqualToString:@"message"]) {
-//		cellView.textField.stringValue = notification.message;
-//	}
-	
-	return cellView;
 }
 
 @end

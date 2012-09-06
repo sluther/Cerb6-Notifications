@@ -42,7 +42,7 @@
         [context deleteObject:notification];
     }
 	
-	[self reloadTableFromStore];
+	[self updateUnreadCounterBadge];
 }
 
 - (IBAction) clearReadNotifications:(id)sender
@@ -63,7 +63,7 @@
         [context deleteObject:notification];
     }
 	
-	[self reloadTableFromStore];
+	[self updateUnreadCounterBadge];
 }
 
 - (IBAction) deleteNotification:(id)sender
@@ -80,7 +80,7 @@
 //		Notification *notification = [selectedNotifications objectAtIndex:i];
 //		[context deleteObject:notification];
 //	}
-	[self reloadTableFromStore];
+	[self updateUnreadCounterBadge];
 }
 
 - (IBAction) openNotification:(id)sender
@@ -147,56 +147,10 @@
 	
 	[self reloadTableFromStore];
 }
-- (void) reloadSitesFromStore
-{
-	NSManagedObjectContext *context = [self managedObjectContext];
-	NSEntityDescription *entity = [NSEntityDescription entityForName:@"Site" inManagedObjectContext:context];
-	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-	NSError *error = nil;
-	
-	[fetchRequest setEntity:entity];
-	
-	sites = [NSMutableArray arrayWithArray:[context executeFetchRequest:fetchRequest error:&error]];
-	
-}
-- (void) reloadTableFromStore
-{
-	NSManagedObjectContext *context = [self managedObjectContext];
-	NSEntityDescription *entity = [NSEntityDescription entityForName:@"Notification" inManagedObjectContext:context];
-	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-	NSError *error = nil;
-	
-	[fetchRequest setEntity:entity];
-	
-	NSMutableArray *userNotifications = [NSMutableArray arrayWithArray:[context executeFetchRequest:fetchRequest error:&error]];
-	
-	NSInteger unreadNotifications = 0;
-	NSInteger totalNotifications = [userNotifications count];
-	
-	// Count unread notifications for dock icon/status menu item
-	for(NSInteger i = 0; i < totalNotifications; i++) {
-		Notification *notification = [userNotifications objectAtIndex:i];
-		if([notification.isRead boolValue] == NO) {
-			unreadNotifications++;
-		}
-	}
-	
-	if(unreadNotifications > 0) {
-		NSString *badgeLabel = [[NSString alloc] initWithFormat:@"%ld", unreadNotifications];
-		[[self dockIcon] setBadgeLabel:badgeLabel];
-	} else {
-		[[self dockIcon] setBadgeLabel:nil];
-	}
-
-	[mainWindowController.notificationsTable reloadData];
-}
 
 - (void) refreshNotifications
 {
 //	printf("Refreshing notifications...\n");
-	
-	[self reloadSitesFromStore];
-	
 	if([sites count] == 0) {
 		return;
 	} else {
@@ -281,9 +235,21 @@
 				}
 			}
 		}
-		[self reloadTableFromStore];
+		[self updateUnreadCounterBadge];
 		[self deliverQueuedNotifications];
 	}
+}
+
+- (void) reloadSitesFromStore
+{
+	NSManagedObjectContext *context = [self managedObjectContext];
+	NSEntityDescription *entity = [NSEntityDescription entityForName:@"Site" inManagedObjectContext:context];
+	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+	NSError *error = nil;
+	
+	[fetchRequest setEntity:entity];
+	
+	sites = [NSMutableArray arrayWithArray:[context executeFetchRequest:fetchRequest error:&error]];
 }
 
 - (NSString *) request:(NSDictionary *)request
@@ -345,6 +311,36 @@
 //	}
 //	return YES;
 //}
+
+- (void) updateUnreadCounterBadge
+{
+	NSManagedObjectContext *context = [self managedObjectContext];
+	NSEntityDescription *entity = [NSEntityDescription entityForName:@"Notification" inManagedObjectContext:context];
+	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+	NSError *error = nil;
+	
+	[fetchRequest setEntity:entity];
+	
+	NSMutableArray *userNotifications = [NSMutableArray arrayWithArray:[context executeFetchRequest:fetchRequest error:&error]];
+	
+	NSInteger unreadNotifications = 0;
+	NSInteger totalNotifications = [userNotifications count];
+	
+	// Count unread notifications for dock icon/status menu item
+	for(NSInteger i = 0; i < totalNotifications; i++) {
+		Notification *notification = [userNotifications objectAtIndex:i];
+		if([notification.isRead boolValue] == NO) {
+			unreadNotifications++;
+		}
+	}
+	
+	if(unreadNotifications > 0) {
+		NSString *badgeLabel = [[NSString alloc] initWithFormat:@"%ld", unreadNotifications];
+		[[self dockIcon] setBadgeLabel:badgeLabel];
+	} else {
+		[[self dockIcon] setBadgeLabel:nil];
+	}
+}
 
 - (void)applicationDidFinishLaunching:(NSNotification *)notification
 {
